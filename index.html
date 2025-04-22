@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -69,7 +30,7 @@
     <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 to-black">
         <div class="container mx-auto text-center px-4">
             <h2 class="text-5xl md:text-6xl font-bold mb-4">Epic Unity Rework</h2>
-            <p class="text-xl md:text-2xl mb-6">A total overhaul mod for Divide and Conquer.</p>
+            <p class="text-xl md:text-2xl mb-6">A total overhaul mod for Divide and Conquer</p>
             <a href="#download" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">Download Now</a>
         </div>
     </section>
@@ -141,9 +102,8 @@
             <h2 class="text-4xl font-bold mb-6">Contact Us</h2>
             <p class="text-xl mb-6">Have questions or want to contribute? Join our community!</p>
             <div class="flex justify-center space-x-6">
-                <a href="mailto:support@epicunityrework.com" class="text-blue-400 hover:text-blue-600">Email</a>
-                <a href="https://discord.gg/your-discord" class="text-blue-400 hover:text-blue-600">Discord</a>
-                <a href="https://x.com/your-profile" class="text-blue-400 hover:text-blue-600">X</a>
+                <a href="https://discord.gg/UteczBgX4Q" class="text-blue-400 hover:text-blue-600">Discord</a>
+                <a href="https://www.moddb.com/mods/eur" class="text-blue-400 hover:text-blue-600">ModDB</a>
             </div>
         </div>
     </section>
