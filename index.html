@@ -1,0 +1,168 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic Unity Rework</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Navigation -->
+    <nav class="bg-gray-900 p-4 sticky top-0 z-10 border-b border-gray-700">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Epic Unity Rework</h1>
+            <ul class="flex space-x-6">
+                <li><a href="#home" class="hover:text-blue-400">Home</a></li>
+                <li><a href="#features" class="hover:text-blue-400">Features</a></li>
+                <li><a href="#download" class="hover:text-blue-400">Download</a></li>
+                <li><a href="#gallery" class="hover:text-blue-400">Screenshots</a></li>
+                <li><a href="#contact" class="hover:text-blue-400">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 to-black">
+        <div class="container mx-auto text-center px-4">
+            <h2 class="text-5xl md:text-6xl font-bold mb-4">Epic Unity Rework</h2>
+            <p class="text-xl md:text-2xl mb-6">Transform your Unity projects with enhanced mechanics, visuals, and performance.</p>
+            <a href="#download" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">Download Now</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Mod Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-2xl font-semibold mb-4">Revamped Mechanics</h3>
+                    <p>Smoother controls, new interactions, and optimized scripts for a seamless Unity experience.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-2xl font-semibold mb-4">Enhanced Visuals</h3>
+                    <p>Upgraded shaders, lighting, and effects to make your projects visually stunning.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-2xl font-semibold mb-4">Performance Boost</h3>
+                    <p>Optimized code and assets to improve runtime performance across platforms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="py-16 bg-black">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-6">Download Epic Unity Rework</h2>
+            <p class="text-xl mb-6">Get started with the mod in a few simple steps.</p>
+            <div class="bg-gray-800 p-6 rounded-lg max-w-2xl mx-auto">
+                <h3 class="text-2xl font-semibold mb-4">Installation Instructions</h3>
+                <ol class="text-left list-decimal pl-6">
+                    <li>Download the mod from the link below.</li>
+                    <li>Extract the .zip file to your Unity project’s Assets folder.</li>
+                    <li>Import the package via Unity’s Package Manager.</li>
+                    <li>Follow the in-editor setup guide to configure the mod.</li>
+                </ol>
+                <a href="#" class="mt-6 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">Download Mod</a>
+                <p class="mt-4 text-gray-400">Requires Unity 2022.3 or higher. Check the <a href="#" class="text-blue-400">FAQ</a> for troubleshooting.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Screenshots</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-gray-800 rounded-lg overflow-hidden">
+                    <img src="https://via.placeholder.com/400x300" alt="Screenshot 1" class="w-full h-auto">
+                    <p class="p-4">New lighting effects in action.</p>
+                </div>
+                <div class="bg-gray-800 rounded-lg overflow-hidden">
+                    <img src="https://via.placeholder.com/400x300" alt="Screenshot 2" class="w-full h-auto">
+                    <p class="p-4">Optimized UI for gameplay.</p>
+                </div>
+                <div class="bg-gray-800 rounded-lg overflow-hidden">
+                    <img src="https://via.placeholder.com/400x300" alt="Screenshot 3" class="w-full h-auto">
+                    <p class="p-4">Enhanced particle systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-black">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-6">Contact Us</h2>
+            <p class="text-xl mb-6">Have questions or want to contribute? Join our community!</p>
+            <div class="flex justify-center space-x-6">
+                <a href="mailto:support@epicunityrework.com" class="text-blue-400 hover:text-blue-600">Email</a>
+                <a href="https://discord.gg/your-discord" class="text-blue-400 hover:text-blue-600">Discord</a>
+                <a href="https://x.com/your-profile" class="text-blue-400 hover:text-blue-600">X</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 p-4 text-center border-t border-gray-700">
+        <p>© 2025 Epic Unity Rework. Built for the Unity modding community.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
