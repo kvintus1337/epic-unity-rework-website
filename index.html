@@ -9,29 +9,25 @@
     <style>
         body {
             font-family: 'Cinzel', serif;
-            background-image: url('https://www.textures.com/system/gallery/photos/Parchment/Plain/131042/ParchmentPlain0007_1_download600.jpg');
-            background-size: cover;
-            background-attachment: fixed;
-            background-color: #2f2f2f; /* Dark gray */
-            color: #f5f5dc; /* Off-white */
+            background-color: #1a1a1a; /* Charcoal */
+            color: #d9d9d9; /* Soft off-white */
         }
         h1, h2, h3 {
             font-family: 'Aniron', serif;
-            color: #ffd700; /* Gold */
+            color: #b89778; /* Muted gold */
         }
         a {
-            color: #1e90ff; /* Dodger blue for links */
+            color: #6aa8b5; /* Soft teal for links */
         }
         a:hover {
-            color: #ff4500; /* Orange-red on hover */
+            color: #4a7c89; /* Muted teal on hover */
         }
-        .runic-border {
-            border: 2px solid #ffd700;
-            border-image: linear-gradient(to right, #ffd700, #ff4500, #ffd700) 1;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        .modern-border {
+            border: 1px solid #b89778; /* Solid muted gold border */
+            border-radius: 8px;
         }
         .parchment-card {
-            background-color: #f4e8c1; /* Parchment beige */
+            background-color: #e8d9b8; /* Lighter beige */
             color: #2f2f2f; /* Dark gray text */
         }
         .hero-bg {
@@ -43,16 +39,16 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="bg-[#2f2f2f] p-4 sticky top-0 z-10 border-b border-[#ffd700]">
+    <nav class="bg-[#1a1a1a] p-4 sticky top-0 z-10 border-b border-[#b89778]">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold">Epic Unity Rework</h1>
+            <h1 class="text-xl font-bold">Epic Unity Rework</h1>
             <ul class="flex space-x-6">
-                <li><a href="#home" class="hover:text-[#ff4500]">Home</a></li>
-                <li><a href="#features" class="hover:text-[#ff4500]">Enhancements</a></li>
-                <li><a href="#download" class="hover:text-[#ff4500]">Download</a></li>
-                <li><a href="#gallery" class="hover:text-[#ff4500]">Visions</a></li>
-                <li><a href="#factions" class="hover:text-[#ff4500]">Factions</a></li>
-                <li><a href="#contact" class="hover:text-[#ff4500]">Contact</a></li>
+                <li><a href="#home" class="hover:text-[#4a7c89]">Home</a></li>
+                <li><a href="#features" class="hover:text-[#4a7c89]">Gallery</a></li>
+                <li><a href="#download" class="hover:text-[#4a7c89]">Download</a></li>
+                <li><a href="#gallery" class="hover:text-[#4a7c89]">Credits</a></li>
+                <li><a href="#factions" class="hover:text-[#4a7c89]">Factions</a></li>
+                <li><a href="#contact" class="hover:text-[#4a7c89]">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -60,34 +56,34 @@
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center justify-center hero-bg">
         <div class="container mx-auto text-center px-4">
-            <h2 class="text-5xl md:text-6xl font-bold mb-4">Epic Unity Rework</h2>
-            <p class="text-xl md:text-2xl mb-6">A grand overhaul for Divide and Conquer, forged in the fires of Middle-earth</p>
-            <a href="#download" class="bg-[#ff4500] hover:bg-[#8b0000] text-[#f5f5dc] font-bold py-2 px-6 rounded-lg">Embark Now</a>
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Epic Unity Rework</h2>
+            <p class="text-lg md:text-xl mb-6">A grand overhaul for Divide and Conquer, forged in the fires of Middle-earth</p>
+            <a href="#download" class="bg-[#4a7c89] hover:bg-[#355c66] text-[#d9d9d9] font-bold py-2 px-6 rounded-lg">Embark Now</a>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-16 bg-[#2f2f2f]">
+    <!-- Features Section (Renamed to Gallery) -->
+    <section id="features" class="py-16 bg-[#1a1a1a]">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12">Enhancements of the Mod</h2>
+            <h2 class="text-3xl font-bold text-center mb-12">Gallery</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Download Section -->
-    <section id="download" class="py-16 bg-[#2f2f2f]">
+    <section id="download" class="py-16 bg-[#1a1a1a]">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold mb-6">Forge Your Path with Epic Unity Rework</h2>
-            <p class="text-xl mb-6">Follow the ancient rites to wield this mod.</p>
-            <div class="parchment-card p-6 rounded-lg max-w-2xl mx-auto runic-border">
-                <h3 class="text-2xl font-semibold mb-4">Rites of Installation</h3>
+            <h2 class="text-3xl font-bold mb-6">Forge Your Path with Epic Unity Rework</h2>
+            <p class="text-lg mb-6">Follow the ancient rites to wield this mod.</p>
+            <div class="parchment-card p-6 rounded-lg max-w-2xl mx-auto modern-border">
+                <h3 class="text-xl font-semibold mb-4">Rites of Installation</h3>
                 <p class="text-left mb-4">Welcome to Epic Unity Rework.<br>Follow the steps below to install the mod successfully, and you’ll find download links for the mod and speed files at the end of this guide.</p>
                 <p class="text-left font-semibold mb-2">EUR Installation Guidelines:</p>
                 <p class="text-left mb-4">DaC V5 is needed for the installation of EUR</p>
@@ -104,26 +100,26 @@
                 <br>
                 <a href="https://docs.google.com/document/d/1ont_ANoBCf0nsifJvS83aKshOZmMjunzhOOvpxxs5MI/edit?usp=sharing" class="inline-block mb-4" target="_blank">Consult the Chronicle of Changes</a>
                 <br>
-                <a href="https://www.dropbox.com/scl/fi/t041ii5pq76t6udfhtzdg/EUR-V1.83.zip?rlkey=lfjfd5mumvox2md5nggl3u3jc&st=x8jn8esj&dl=0" class="mt-6 inline-block bg-[#ff4500] hover:bg-[#8b0000] text-[#f5f5dc] font-bold py-2 px-6 rounded-lg" target="_blank">Claim Mod (V1.83)</a>
-                <p class="mt-4 text-gray-700">Requires DaC V5 and Medieval II: Total War. Seek the <a href="#" class="text-[#1e90ff]">FAQ</a> for guidance.</p>
+                <a href="https://www.dropbox.com/scl/fi/t041ii5pq76t6udfhtzdg/EUR-V1.83.zip?rlkey=lfjfd5mumvox2md5nggl3u3jc&st=x8jn8esj&dl=0" class="mt-6 inline-block bg-[#4a7c89] hover:bg-[#355c66] text-[#d9d9d9] font-bold py-2 px-6 rounded-lg" target="_blank">Claim Mod (V1.83)</a>
+                <p class="mt-4 text-gray-700">Requires DaC V5 and Medieval II: Total War. Seek the <a href="#" class="text-[#6aa8b5]">FAQ</a> for guidance.</p>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-16 bg-[#2f2f2f]">
+    <!-- Gallery Section (Renamed to Credits) -->
+    <section id="gallery" class="py-16 bg-[#1a1a1a]">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12">Visions of Middle-earth</h2>
+            <h2 class="text-3xl font-bold text-center mb-12">Credits</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-[#191970] rounded-lg overflow-hidden runic-border">
+                <div class="bg-[#2b2e3b] rounded-lg overflow-hidden modern-border">
                     <img src="images/screenshot1.jpg" alt="Epic Unity Rework battle scene" class="w-full h-auto">
                     <p class="p-4">Battles ablaze with newfound splendor.</p>
                 </div>
-                <div class="bg-[#191970] rounded-lg overflow-hidden runic-border">
+                <div class="bg-[#2b2e3b] rounded-lg overflow-hidden modern-border">
                     <img src="images/screenshot2.jpg" alt="Epic Unity Rework campaign map" class="w-full h-auto">
                     <p class="p-4">A campaign map reborn in glory.</p>
                 </div>
-                <div class="bg-[#191970] rounded-lg overflow-hidden runic-border">
+                <div class="bg-[#2b2e3b] rounded-lg overflow-hidden modern-border">
                     <img src="images/screenshot3.jpg" alt="Epic Unity Rework unit models" class="w-full h-auto">
                     <p class="p-4">Units clad in intricate detail.</p>
                 </div>
@@ -132,118 +128,118 @@
     </section>
 
     <!-- Factions Section -->
-    <section id="factions" class="py-16 bg-[#2f2f2f]">
+    <section id="factions" class="py-16 bg-[#1a1a1a]">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12">Factions of Middle-earth</h2>
+            <h2 class="text-3xl font-bold text-center mb-12">Factions of Middle-earth</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Anduin Vale</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Anduin Vale</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Angmar</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Angmar</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Ar Adunaim</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Ar Adunaim</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Blue Crag</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Blue Crag</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Dale</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Dale</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Dol Guldur</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Dol Guldur</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Dornwinion</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Dornwinion</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Dunland</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Dunland</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Enedwaith</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Enedwaith</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Erebor</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Erebor</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Ered Luin</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Ered Luin</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Goblins of Moria</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Goblins of Moria</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Gondor</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Gondor</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Gundabad</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Gundabad</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Harad</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Harad</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Imladris</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Imladris</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Isengard</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Isengard</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Khnd</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Khnd</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Khazad Dum</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Khazad Dum</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Kingdom of Eregion</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Kingdom of Eregion</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Kingdom of Noldor Imladris</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Kingdom of Noldor Imladris</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Kingdom of Noldor Lindon</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Kingdom of Noldor Lindon</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Lindon</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Lindon</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Lorien</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Lorien</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Mordor</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Mordor</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Northern Dúnedain</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Northern Dúnedain</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Rebels</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Rebels</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Rhun</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Rhun</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Rohan</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Rohan</h3>
                 </div>
-                <div class="bg-[#191970] p-6 rounded-lg runic-border">
-                    <h3 class="text-2xl font-semibold mb-4">Woodland Realm</h3>
+                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
+                    <h3 class="text-xl font-semibold mb-4">Woodland Realm</h3>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-[#2f2f2f]">
+    <section id="contact" class="py-16 bg-[#1a1a1a]">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold mb-6">Join the Fellowship</h2>
-            <p class="text-xl mb-6">Seek counsel or lend your strength to our cause!</p>
+            <h2 class="text-3xl font-bold mb-6">Join the Fellowship</h2>
+            <p class="text-lg mb-6">Seek counsel or lend your strength to our cause!</p>
             <div class="flex justify-center space-x-6">
-                <a href="https://discord.gg/UteczBgX4Q" class="hover:text-[#ff4500]" target="_blank">Discord</a>
-                <a href="https://www.moddb.com/mods/eur" class="hover:text-[#ff4500]" target="_blank">ModDB</a>
+                <a href="https://discord.gg/UteczBgX4Q" class="hover:text-[#4a7c89]" target="_blank">Discord</a>
+                <a href="https://www.moddb.com/mods/eur" class="hover:text-[#4a7c89]" target="_blank">ModDB</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-[#2f2f2f] p-4 text-center border-t border-[#ffd700]">
+    <footer class="bg-[#1a1a1a] p-4 text-center border-t border-[#b89778]">
         <p>© 2025 Epic Unity Rework. Forged for the Free Peoples of Middle-earth.</p>
     </footer>
 
