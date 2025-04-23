@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="developers.title">Developers - Epic Unity Rework</title>
+    <title>Developers - Epic Unity Rework</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Aniron&display=swap" rel="stylesheet">
     <style>
@@ -63,25 +63,6 @@
             cursor: pointer;
             color: #b89778;
         }
-        .language-switcher {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-        .language-switcher button {
-            background: none;
-            border: none;
-            color: #6aa8b5;
-            cursor: pointer;
-            font-family: 'Cinzel', serif;
-        }
-        .language-switcher button:hover {
-            color: #4a7c89;
-        }
-        .language-switcher button.active {
-            color: #b89778;
-            font-weight: bold;
-        }
         @media (max-width: 768px) {
             .nav-links ul {
                 display: none;
@@ -104,9 +85,6 @@
             .hamburger {
                 display: block;
             }
-            .language-switcher {
-                margin-top: 1rem;
-            }
         }
     </style>
 </head>
@@ -115,23 +93,16 @@
     <nav>
         <div class="container mx-auto flex justify-between items-center nav-links">
             <h1 class="text-xl font-bold">Epic Unity Rework</h1>
-            <div class="flex items-center gap-4">
-                <div class="language-switcher">
-                    <button class="language-btn" data-lang="en">EN</button>
-                    <button class="language-btn" data-lang="pl">PL</button>
-                </div>
-                <div class="hamburger">☰</div>
-            </div>
+            <div class="hamburger">☰</div>
             <ul>
-                <li><a href="index.html#home" class="hover:text-[#4a7c89]" data-i18n="nav.home">Home</a></li>
-                <li><a href="index.html#features" class="hover:text-[#4a7c89]" data-i18n="nav.gallery">Gallery</a></li>
-                <li><a href="index.html#download" class="hover:text-[#4a7c89]" data-i18n="nav.download">Download</a></li>
-                <li><a href="index.html#gallery" class="hover:text-[#4a7c89]" data-i18n="nav.credits">Credits</a></li>
-                <li><a href="developers.html" class="hover:text-[#4a7c89]" data-i18n="nav.developers">Developers</a></li>
-                <li><a href="factions.html" class="hover:text-[#4a7c89]" data-i18n="nav.factions">Factions</a></li>
-                <li><a href="submods.html" class="hover:text-[#4a7c89]" data-i18n="nav.submods">Submods</a></li>
-                <li><a href="partners.html" class="hover:text-[#4a7c89]" data-i18n="nav.partners">Partners</a></li>
-                <li><a href="index.html#contact" class="hover:text-[#4a7c89]" data-i18n="nav.contact">Contact</a></li>
+                <li><a href="index.html#home" class="hover:text-[#4a7c89]">Home</a></li>
+                <li><a href="index.html#features" class="hover:text-[#4a7c89]">Gallery</a></li>
+                <li><a href="index.html#download" class="hover:text-[#4a7c89]">Download</a></li>
+                <li><a href="index.html#gallery" class="hover:text-[#4a7c89]">Credits</a></li>
+                <li><a href="developers.html" class="hover:text-[#4a7c89]">Developers</a></li>
+                <li><a href="factions.html" class="hover:text-[#4a7c89]">Factions</a></li>
+                <li><a href="submods.html" class="hover:text-[#4a7c89]">Submods</a></li>
+                <li><a href="index.html#contact" class="hover:text-[#4a7c89]">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -139,26 +110,49 @@
     <!-- Developers Section -->
     <section class="py-16 bg-[#1a1a1a]">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12" data-i18n="developers.title">Developers</h2>
+            <h2 class="text-3xl font-bold text-center mb-12">Developers</h2>
             <div class="parchment-card p-6 rounded-lg max-w-2xl mx-auto modern-border">
-                <h3 class="text-xl font-semibold text-[#2f2f2f] mb-4" data-i18n="developers.theEye">The Eye</h3>
-                <p class="text-left text-white mb-4">Arachîr Galudirithon</p>
-                <h3 class="text-xl font-semibold text-[#2f2f2f] mb-4" data-i18n="developers.leadDeveloper">Lead Developer</h3>
-                <p class="text-left text-white mb-4">Arachîr Galudirithon</p>
-                <h3 class="text-xl font-semibold text-[#2f2f2f] mb-4" data-i18n="developers.developer">Developer</h3>
-                <p class="text-left text-white mb-4">Sauron<br>boogia</p>
-                <h3 class="text-xl font-semibold text-[#2f2f2f] mb-4" data-i18n="developers.contributor">Contributor</h3>
-                <p class="text-left text-white mb-4">Mithridan<br>Commander<br>WK<br>Billbaraka<br>King Kong<br>Maty743<br>Himling<br>Mr. Jox<br>AGO<br>EBII team</p>
+                <h3 class="text-xl font-semibold mb-4 text-[#b89778]"><span class="text-yellow-400 text-lg underline">The Eye</span></h3>
+                <p class="text-left mb-2"><span class="text-white">Perry</span></p>
+                <h3 class="text-xl font-semibold mb-4 mt-6 text-[#b89778]"><span class="text-red-500 text-lg underline">Lead Developer</span></h3>
+                <p class="text-left mb-2"><span class="text-white">Perry</span></p>
+                <p class="text-left mb-2"><span class="text-white">¡kvintus!</span></p>
+                <p class="text-left mb-2"><span class="text-white">ProJ</span></p>
+                <h3 class="text-xl font-semibold mb-4 mt-6 text-[#b89778]"><span class="text-orange-400 text-lg underline">Developer</span></h3>
+                <p class="text-left mb-2"><span class="text-white">Carbonara</span></p>
+                <p class="text-left mb-2"><span class="text-white">chris0</span></p>
+                <p class="text-left mb-2"><span class="text-white">Alexios22</span></p>
+                <p class="text-left mb-2"><span class="text-white">FEB | The Mouseman</span></p>
+                <p class="text-left mb-2"><span class="text-white">Sentinel</span></p>
+                <p class="text-left mb-2"><span class="text-white">Fingon</span></p>
+                <h3 class="text-xl font-semibold mb-4 mt-6 text-[#b89778]"><span class="text-pink-400 text-lg underline">Contributor</span></h3>
+                <p class="text-left mb-2"><span class="text-white">BIll Baraka</span></p>
+                <p class="text-left mb-2"><span class="text-white">Maverick</span></p>
+                <p class="text-left mb-2"><span class="text-white">Castellan</span></p>
+                <p class="text-left mb-2"><span class="text-white">Louis Lux</span></p>
+                <p class="text-left mb-2"><span class="text-white">Lord_Ellesar</span></p>
+                <p class="text-left mb-2"><span class="text-white">Fingon_</span></p>
+                <p class="text-left mb-2"><span class="text-white">Hazwood</span></p>
+                <p class="text-left mb-2"><span class="text-white">Majmunee</span></p>
+                <p class="text-left mb-2"><span class="text-white">Armolitskiy</span></p>
+                <p class="text-left mb-2"><span class="text-white">Anders</span></p>
+                <p class="text-left mb-2"><span class="text-white">Spitty</span></p>
+                <p class="text-left mb-2"><span class="text-white">Darth Bilbo</span></p>
+                <p class="text-left mb-2"><span class="text-white">Noahqshark</span></p>
+                <p class="text-left mb-2"><span class="text-white">Rogue</span></p>
+                <p class="text-left mb-2"><span class="text-white">Skyn0s</span></p>
+                <p class="text-left mb-2"><span class="text-white">Swan</span></p>
+                <p class="text-left mb-2"><span class="text-white">TheCoweringComa</span></p>
+                <p class="text-left mb-2"><span class="text-white">Lerynian</span></p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-[#1a1a1a] p-4 text-center border-t border-[#b89778]">
-        <p data-i18n="footer">© 2025 Epic Unity Rework. Forged for the Free Peoples of Middle-earth.</p>
+        <p>© 2025 Epic Unity Rework. Forged for the Free Peoples of Middle-earth.</p>
     </footer>
 
-    <script src="translations.js"></script>
     <script>
         // Toggle mobile menu
         const hamburger = document.querySelector('.hamburger');
