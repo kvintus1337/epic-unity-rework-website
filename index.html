@@ -5,122 +5,246 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Epic Unity Rework</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Aniron&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Cinzel', serif;
+            background-image: url('https://www.textures.com/system/gallery/photos/Parchment/Plain/131042/ParchmentPlain0007_1_download600.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-color: #2f2f2f; /* Dark gray */
+            color: #f5f5dc; /* Off-white */
+        }
+        h1, h2, h3 {
+            font-family: 'Aniron', serif;
+            color: #ffd700; /* Gold */
+        }
+        a {
+            color: #1e90ff; /* Dodger blue for links */
+        }
+        a:hover {
+            color: #ff4500; /* Orange-red on hover */
+        }
+        .runic-border {
+            border: 2px solid #ffd700;
+            border-image: linear-gradient(to right, #ffd700, #ff4500, #ffd700) 1;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        }
+        .parchment-card {
+            background-color: #f4e8c1; /* Parchment beige */
+            color: #2f2f2f; /* Dark gray text */
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/eur-banner.jpg');
+            background-size: cover;
+            background-position: center;
         }
     </style>
 </head>
-<body class="bg-black text-white">
+<body>
     <!-- Navigation -->
-    <nav class="bg-gray-900 p-4 sticky top-0 z-10 border-b border-gray-700">
+    <nav class="bg-[#2f2f2f] p-4 sticky top-0 z-10 border-b border-[#ffd700]">
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-2xl font-bold">Epic Unity Rework</h1>
             <ul class="flex space-x-6">
-                <li><a href="#home" class="hover:text-blue-400">Home</a></li>
-                <li><a href="#features" class="hover:text-blue-400">Features</a></li>
-                <li><a href="#download" class="hover:text-blue-400">Download</a></li>
-                <li><a href="#gallery" class="hover:text-blue-400">Screenshots</a></li>
-                <li><a href="#contact" class="hover:text-blue-400">Contact</a></li>
+                <li><a href="#home" class="hover:text-[#ff4500]">Home</a></li>
+                <li><a href="#features" class="hover:text-[#ff4500]">Enhancements</a></li>
+                <li><a href="#download" class="hover:text-[#ff4500]">Download</a></li>
+                <li><a href="#gallery" class="hover:text-[#ff4500]">Visions</a></li>
+                <li><a href="#factions" class="hover:text-[#ff4500]">Factions</a></li>
+                <li><a href="#contact" class="hover:text-[#ff4500]">Contact</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 to-black">
+    <section id="home" class="min-h-screen flex items-center justify-center hero-bg">
         <div class="container mx-auto text-center px-4">
             <h2 class="text-5xl md:text-6xl font-bold mb-4">Epic Unity Rework</h2>
-            <p class="text-xl md:text-2xl mb-6">A total overhaul mod for Divide and Conquer</p>
-            <a href="#download" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">Download Now</a>
+            <p class="text-xl md:text-2xl mb-6">A grand overhaul for Divide and Conquer, forged in the fires of Middle-earth</p>
+            <a href="#download" class="bg-[#ff4500] hover:bg-[#8b0000] text-[#f5f5dc] font-bold py-2 px-6 rounded-lg">Embark Now</a>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-16 bg-gray-900">
+    <section id="features" class="py-16 bg-[#2f2f2f]">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12">Mod Features</h2>
+            <h2 class="text-4xl font-bold text-center mb-12">Enhancements of the Mod</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-800 p-6 rounded-lg">
-                    <h3 class="text-2xl font-semibold mb-4">Revamped Mechanics</h3>
-                    <p>Smoother controls, new interactions, and optimized scripts for a seamless Unity experience.</p>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
                 </div>
-                <div class="bg-gray-800 p-6 rounded-lg">
-                    <h3 class="text-2xl font-semibold mb-4">Enhanced Visuals</h3>
-                    <p>Upgraded shaders, lighting, and effects to make your projects visually stunning.</p>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
                 </div>
-                <div class="bg-gray-800 p-6 rounded-lg">
-                    <h3 class="text-2xl font-semibold mb-4">Performance Boost</h3>
-                    <p>Optimized code and assets to improve runtime performance across platforms.</p>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Download Section -->
-    <section id="download" class="py-16 bg-black">
+    <section id="download" class="py-16 bg-[#2f2f2f]">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold mb-6">Download Epic Unity Rework</h2>
-            <p class="text-xl mb-6">Get started with the mod in a few simple steps.</p>
-            <div class="bg-gray-800 p-6 rounded-lg max-w-2xl mx-auto">
-                <h3 class="text-2xl font-semibold mb-4">Installation Instructions</h3>
-                <p class="text-left mb-4">Welcome to Epic Unity Rework. Follow the steps below to install the mod successfully, and you’ll find download links for the mod and speed files at the end of this guide.</p>
+            <h2 class="text-4xl font-bold mb-6">Forge Your Path with Epic Unity Rework</h2>
+            <p class="text-xl mb-6">Follow the ancient rites to wield this mod.</p>
+            <div class="parchment-card p-6 rounded-lg max-w-2xl mx-auto runic-border">
+                <h3 class="text-2xl font-semibold mb-4">Rites of Installation</h3>
+                <p class="text-left mb-4">Welcome to Epic Unity Rework.<br>Follow the steps below to install the mod successfully, and you’ll find download links for the mod and speed files at the end of this guide.</p>
                 <p class="text-left font-semibold mb-2">EUR Installation Guidelines:</p>
                 <p class="text-left mb-4">DaC V5 is needed for the installation of EUR</p>
                 <ol class="text-left list-decimal pl-6 mb-4">
                     <li>Download the most recent EUR version</li>
                     <li>Unzip the file to any location.</li>
                     <li>Drag and drop the contents into DAC folder and overwrite it</li>
-                    <li>Rename your Divide_and_Conquer folder to Divide_and_Conquer_EUR<br><span class="font-semibold">Very important. Otherwise your game won’t launch!</span></li>
+                    <li>Rename your Divide_and_Conquer folder to Divide_and_Conquer_EUR<br><span class="font-semibold">very important. Otherwise your game wont launch!</span></li>
                     <li>Run Large Address Aware on the Medieval2.exe</li>
                     <li>Run cleaner.bat</li>
                     <li>Launch game from M2TWEOP GUI</li>
                 </ol>
-                <a href="https://www.youtube.com/watch?v=HtldCEY2Oks&t=2s" class="inline-block text-blue-400 hover:text-blue-600 mb-2" target="_blank">Watch the Installation Guide on YouTube</a>
+                <a href="https://www.youtube.com/watch?v=HtldCEY2Oks&t=2s" class="inline-block mb-2" target="_blank">Witness the Installation Lore on YouTube</a>
                 <br>
-                <a href="https://docs.google.com/document/d/1ont_ANoBCf0nsifJvS83aKshOZmMjunzhOOvpxxs5MI/edit?usp=sharing" class="inline-block text-blue-400 hover:text-blue-600 mb-4" target="_blank">View the Changelog</a>
+                <a href="https://docs.google.com/document/d/1ont_ANoBCf0nsifJvS83aKshOZmMjunzhOOvpxxs5MI/edit?usp=sharing" class="inline-block mb-4" target="_blank">Consult the Chronicle of Changes</a>
                 <br>
-                <a href="https://www.dropbox.com/scl/fi/t041ii5pq76t6udfhtzdg/EUR-V1.83.zip?rlkey=lfjfd5mumvox2md5nggl3u3jc&st=x8jn8esj&dl=0" class="mt-6 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg" target="_blank">Download Mod (V1.83)</a>
-                <p class="mt-4 text-gray-400">Requires DaC V5 and Medieval II: Total War. Check the <a href="#" class="text-blue-400">FAQ</a> for troubleshooting.</p>
+                <a href="https://www.dropbox.com/scl/fi/t041ii5pq76t6udfhtzdg/EUR-V1.83.zip?rlkey=lfjfd5mumvox2md5nggl3u3jc&st=x8jn8esj&dl=0" class="mt-6 inline-block bg-[#ff4500] hover:bg-[#8b0000] text-[#f5f5dc] font-bold py-2 px-6 rounded-lg" target="_blank">Claim Mod (V1.83)</a>
+                <p class="mt-4 text-gray-700">Requires DaC V5 and Medieval II: Total War. Seek the <a href="#" class="text-[#1e90ff]">FAQ</a> for guidance.</p>
             </div>
         </div>
     </section>
 
     <!-- Gallery Section -->
-    <section id="gallery" class="py-16 bg-gray-900">
+    <section id="gallery" class="py-16 bg-[#2f2f2f]">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12">Screenshots</h2>
+            <h2 class="text-4xl font-bold text-center mb-12">Visions of Middle-earth</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-gray-800 rounded-lg overflow-hidden">
+                <div class="bg-[#191970] rounded-lg overflow-hidden runic-border">
                     <img src="images/screenshot1.jpg" alt="Epic Unity Rework battle scene" class="w-full h-auto">
-                    <p class="p-4">Enhanced battle visuals with new effects.</p>
+                    <p class="p-4">Battles ablaze with newfound splendor.</p>
                 </div>
-                <div class="bg-gray-800 rounded-lg overflow-hidden">
+                <div class="bg-[#191970] rounded-lg overflow-hidden runic-border">
                     <img src="images/screenshot2.jpg" alt="Epic Unity Rework campaign map" class="w-full h-auto">
-                    <p class="p-4">Revamped campaign map UI.</p>
+                    <p class="p-4">A campaign map reborn in glory.</p>
                 </div>
-                <div class="bg-gray-800 rounded-lg overflow-hidden">
+                <div class="bg-[#191970] rounded-lg overflow-hidden runic-border">
                     <img src="images/screenshot3.jpg" alt="Epic Unity Rework unit models" class="w-full h-auto">
-                    <p class="p-4">Detailed unit models and textures.</p>
+                    <p class="p-4">Units clad in intricate detail.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Factions Section -->
+    <section id="factions" class="py-16 bg-[#2f2f2f]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Factions of Middle-earth</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Anduin Vale</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Angmar</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Ar Adunaim</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Blue Crag</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Dale</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Dol Guldur</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Dornwinion</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Dunland</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Enedwaith</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Erebor</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Ered Luin</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Goblins of Moria</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Gondor</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Gundabad</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Harad</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Imladris</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Isengard</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Khnd</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Khazad Dum</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Kingdom of Eregion</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Kingdom of Noldor Imladris</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Kingdom of Noldor Lindon</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Lindon</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Lorien</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Mordor</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Northern Dúnedain</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Rebels</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Rhun</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Rohan</h3>
+                </div>
+                <div class="bg-[#191970] p-6 rounded-lg runic-border">
+                    <h3 class="text-2xl font-semibold mb-4">Woodland Realm</h3>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-black">
+    <section id="contact" class="py-16 bg-[#2f2f2f]">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold mb-6">Contact Us</h2>
-            <p class="text-xl mb-6">Have questions or want to contribute? Join our community!</p>
+            <h2 class="text-4xl font-bold mb-6">Join the Fellowship</h2>
+            <p class="text-xl mb-6">Seek counsel or lend your strength to our cause!</p>
             <div class="flex justify-center space-x-6">
-                <a href="https://discord.gg/UteczBgX4Q" class="text-blue-400 hover:text-blue-600" target="_blank">Discord</a>
-                <a href="https://www.moddb.com/mods/eur" class="text-blue-400 hover:text-blue-600" target="_blank">ModDB</a>
+                <a href="https://discord.gg/UteczBgX4Q" class="hover:text-[#ff4500]" target="_blank">Discord</a>
+                <a href="https://www.moddb.com/mods/eur" class="hover:text-[#ff4500]" target="_blank">ModDB</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 p-4 text-center border-t border-gray-700">
-        <p>© 2025 Epic Unity Rework. Built for the Unity modding community.</p>
+    <footer class="bg-[#2f2f2f] p-4 text-center border-t border-[#ffd700]">
+        <p>© 2025 Epic Unity Rework. Forged for the Free Peoples of Middle-earth.</p>
     </footer>
 
     <script>
