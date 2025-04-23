@@ -1,0 +1,114 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic Unity Rework - Submods</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Aniron&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cinzel', serif;
+            background-color: #1a1a1a; /* Charcoal */
+            color: #d9d9d9; /* Soft off-white */
+        }
+        h1, h2, h3 {
+            font-family: 'Aniron', serif;
+            color: #b89778; /* Muted gold */
+        }
+        a {
+            color: #6aa8b5; /* Soft teal for links */
+        }
+        a:hover {
+            color: #4a7c89; /* Muted teal on hover */
+        }
+        .modern-border {
+            border: 1px solid #b89778; /* Solid muted gold border */
+            border-radius: 8px;
+        }
+        .submods-list {
+            background-color: #2b2e3b; /* Dark slate */
+            padding: 1.5rem;
+            max-width: 600px; /* Limit width for readability */
+            margin: 0 auto; /* Center the container */
+        }
+        .submods-list p {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-[#1a1a1a] p-4 sticky top-0 z-10 border-b border-[#b89778]">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">Epic Unity Rework</h1>
+            <ul class="flex space-x-6">
+                <li><a href="index.html#home" class="hover:text-[#4a7c89]">Home</a></li>
+                <li><a href="index.html#features" class="hover:text-[#4a7c89]">Gallery</a></li>
+                <li><a href="index.html#download" class="hover:text-[#4a7c89]">Download</a></li>
+                <li><a href="index.html#gallery" class="hover:text-[#4a7c89]">Credits</a></li>
+                <li><a href="factions.html" class="hover:text-[#4a7c89]">Factions</a></li>
+                <li><a href="submods.html" class="hover:text-[#4a7c89]">Submods</a></li>
+                <li><a href="index.html#contact" class="hover:text-[#4a7c89]">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Submods Section -->
+    <section id="submods" class="py-16 bg-[#1a1a1a]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Submods</h2>
+            <div class="submods-list modern-border">
+                <p><a href="https://drive.google.com/file/d/1yZIdQ96gjMiCKFOvrUqTKqLEoC3QMKH3/view?usp=sharing" target="_blank">New Soundtrack submod v1.1.1</a> by BigSharky</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1a1a1a] p-4 text-center border-t border-[#b89778]">
+        <p>© 2025 Epic Unity Rework. Forged for the Free Peoples of Middle-earth.</p>
+    </footer>
+</body>
+</html>
