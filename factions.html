@@ -36,7 +36,7 @@
             width: 100%;
             max-width: 300px; /* Limit width for better appearance */
             height: 40px;
-            -webkit-appearance: none; /* Remove default dropdown arrow (for styling) */
+            -webkit-appearance: none; /* Remove default dropdown arrow */
             -moz-appearance: none;
             appearance: none;
             background-image: url('data:image/svg+xml;utf8,<svg fill="%23b89778" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Custom dropdown arrow */
@@ -50,6 +50,25 @@
         select option {
             background-color: #2b2e3b; /* Match dropdown background */
             color: #d9d9d9; /* Soft off-white */
+        }
+        #factionDetails {
+            display: none; /* Hidden by default */
+            margin-top: 2rem;
+            background-color: #2b2e3b; /* Dark slate */
+            padding: 1.5rem;
+            border-radius: 8px;
+            max-width: 600px; /* Limit width for readability */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #factionDetails h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        #factionDetails p {
+            font-size: 1rem;
+            text-align: center;
         }
     </style>
 </head>
@@ -73,39 +92,43 @@
     <section id="factions" class="py-16 bg-[#1a1a1a]">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold mb-8">Choose a Faction</h2>
-            <select id="factionSelect" onchange="if(this.value) window.open(this.value, '_blank');">
+            <select id="factionSelect" onchange="displayFactionDetails(this.value)">
                 <option value="" disabled selected>Select a faction...</option>
-                <option value="anduin-vale.html">Anduin Vale</option>
-                <option value="angmar.html">Angmar</option>
-                <option value="ar-adunaim.html">Ar Adunaim</option>
-                <option value="blue-crag.html">Blue Crag</option>
-                <option value="dale.html">Dale</option>
-                <option value="dol-guldur.html">Dol Guldur</option>
-                <option value="dornwinion.html">Dornwinion</option>
-                <option value="dunland.html">Dunland</option>
-                <option value="enedwaith.html">Enedwaith</option>
-                <option value="erebor.html">Erebor</option>
-                <option value="ered-luin.html">Ered Luin</option>
-                <option value="goblins-of-moria.html">Goblins of Moria</option>
-                <option value="gondor.html">Gondor</option>
-                <option value="gundabad.html">Gundabad</option>
-                <option value="harad.html">Harad</option>
-                <option value="imladris.html">Imladris</option>
-                <option value="isengard.html">Isengard</option>
-                <option value="khnd.html">Khnd</option>
-                <option value="khazad-dum.html">Khazad Dum</option>
-                <option value="kingdom-of-eregion.html">Kingdom of Eregion</option>
-                <option value="kingdom-of-noldor-imladris.html">Kingdom of Noldor Imladris</option>
-                <option value="kingdom-of-noldor-lindon.html">Kingdom of Noldor Lindon</option>
-                <option value="lindon.html">Lindon</option>
-                <option value="lorien.html">Lorien</option>
-                <option value="mordor.html">Mordor</option>
-                <option value="northern-dunedain.html">Northern Dúnedain</option>
-                <option value="rebels.html">Rebels</option>
-                <option value="rhun.html">Rhun</option>
-                <option value="rohan.html">Rohan</option>
-                <option value="woodland-realm.html">Woodland Realm</option>
+                <option value="anduin-vale">Anduin Vale</option>
+                <option value="angmar">Angmar</option>
+                <option value="ar-adunaim">Ar Adunaim</option>
+                <option value="blue-crag">Blue Crag</option>
+                <option value="dale">Dale</option>
+                <option value="dol-guldur">Dol Guldur</option>
+                <option value="dornwinion">Dornwinion</option>
+                <option value="dunland">Dunland</option>
+                <option value="enedwaith">Enedwaith</option>
+                <option value="erebor">Erebor</option>
+                <option value="ered-luin">Ered Luin</option>
+                <option value="goblins-of-moria">Goblins of Moria</option>
+                <option value="gondor">Gondor</option>
+                <option value="gundabad">Gundabad</option>
+                <option value="harad">Harad</option>
+                <option value="imladris">Imladris</option>
+                <option value="isengard">Isengard</option>
+                <option value="khnd">Khnd</option>
+                <option value="khazad-dum">Khazad Dum</option>
+                <option value="kingdom-of-eregion">Kingdom of Eregion</option>
+                <option value="kingdom-of-noldor-imladris">Kingdom of Noldor Imladris</option>
+                <option value="kingdom-of-noldor-lindon">Kingdom of Noldor Lindon</option>
+                <option value="lindon">Lindon</option>
+                <option value="lorien">Lorien</option>
+                <option value="mordor">Mordor</option>
+                <option value="northern-dunedain">Northern Dúnedain</option>
+                <option value="rebels">Rebels</option>
+                <option value="rhun">Rhun</option>
+                <option value="rohan">Rohan</option>
+                <option value="woodland-realm">Woodland Realm</option>
             </select>
+            <div id="factionDetails" class="modern-border">
+                <h3 id="factionName"></h3>
+                <p id="factionDescription"></p>
+            </div>
         </div>
     </section>
 
@@ -113,5 +136,146 @@
     <footer class="bg-[#1a1a1a] p-4 text-center border-t border-[#b89778]">
         <p>© 2025 Epic Unity Rework. Forged for the Free Peoples of Middle-earth.</p>
     </footer>
+
+    <script>
+        // Faction data
+        const factions = {
+            "anduin-vale": {
+                name: "Anduin Vale",
+                description: "The Anduin Vale, nestled along the Great River, is home to resilient folk who thrive in harmony with nature. In Epic Unity Rework, this faction excels in defensive strategies and river-based warfare."
+            },
+            "angmar": {
+                name: "Angmar",
+                description: "Angmar, a dark realm in the north, is ruled by the Witch-king. This faction in Epic Unity Rework specializes in dark sorcery and overwhelming infantry assaults."
+            },
+            "ar-adunaim": {
+                name: "Ar Adunaim",
+                description: "The Ar Adunaim are descendants of Númenor, now turned to darker paths. In Epic Unity Rework, they wield powerful naval forces and elite infantry."
+            },
+            "blue-crag": {
+                name: "Blue Crag",
+                description: "The Blue Crag goblins are a savage faction hiding in the mountains. In Epic Unity Rework, they rely on ambushes and swarm tactics."
+            },
+            "dale": {
+                name: "Dale",
+                description: "Dale, a prosperous city of Men, stands as a beacon of hope in the North. In Epic Unity Rework, they are known for their skilled archers and trade wealth."
+            },
+            "dol-guldur": {
+                name: "Dol Guldur",
+                description: "Dol Guldur, a stronghold of Sauron’s forces, is shrouded in darkness. In Epic Unity Rework, this faction uses fear and dark creatures to dominate."
+            },
+            "dornwinion": {
+                name: "Dornwinion",
+                description: "Dornwinion is famed for its wine and wealth in the East. In Epic Unity Rework, they excel in trade and cavalry."
+            },
+            "dunland": {
+                name: "Dunland",
+                description: "The wild men of Dunland are fierce and untamed. In Epic Unity Rework, they are masters of guerrilla warfare and swift raids."
+            },
+            "enedwaith": {
+                name: "Enedwaith",
+                description: "Enedwaith’s people live in the wild lands between Gondor and the North. In Epic Unity Rework, they are versatile and adept at survival."
+            },
+            "erebor": {
+                name: "Erebor",
+                description: "Erebor, the Lonely Mountain, is home to the Dwarves of Durin’s Folk. In Epic Unity Rework, they boast strong defenses and master craftsmanship."
+            },
+            "ered-luin": {
+                name: "Ered Luin",
+                description: "Ered Luin, the Blue Mountains, houses Dwarven strongholds. In Epic Unity Rework, they focus on mining and sturdy infantry."
+            },
+            "goblins-of-moria": {
+                name: "Goblins of Moria",
+                description: "The Goblins of Moria lurk in the depths of the ancient Dwarven city. In Epic Unity Rework, they use numbers and traps to overwhelm foes."
+            },
+            "gondor": {
+                name: "Gondor",
+                description: "Gondor, the great kingdom of Men, stands as a bulwark against Mordor. In Epic Unity Rework, they are known for disciplined armies and strong fortifications."
+            },
+            "gundabad": {
+                name: "Gundabad",
+                description: "Gundabad is a stronghold of orcs in the North. In Epic Unity Rework, they rely on brute strength and large warbands."
+            },
+            "harad": {
+                name: "Harad",
+                description: "Harad, from the deserts of the South, brings exotic warriors to the fight. In Epic Unity Rework, they use mûmakil and swift cavalry."
+            },
+            "imladris": {
+                name: "Imladris",
+                description: "Imladris, or Rivendell, is a haven of the Elves. In Epic Unity Rework, they excel in wisdom, magic, and elite warriors."
+            },
+            "isengard": {
+                name: "Isengard",
+                description: "Isengard, under Saruman’s rule, is a war machine of industry. In Epic Unity Rework, they field Uruk-hai and siege weapons."
+            },
+            "khnd": {
+                name: "Khnd",
+                description: "Khnd represents the eastern tribes aligned with Sauron. In Epic Unity Rework, they are fierce and use versatile units."
+            },
+            "khazad-dum": {
+                name: "Khazad Dum",
+                description: "Khazad Dum, or Moria, was once a Dwarven kingdom. In Epic Unity Rework, this faction can reclaim its glory with powerful Dwarven units."
+            },
+            "kingdom-of-eregion": {
+                name: "Kingdom of Eregion",
+                description: "Eregion, an ancient Elven realm, is steeped in history. In Epic Unity Rework, they wield ancient craftsmanship and Elven magic."
+            },
+            "kingdom-of-noldor-imladris": {
+                name: "Kingdom of Noldor Imladris",
+                description: "The Noldor of Imladris are a noble Elven faction. In Epic Unity Rework, they combine Elven grace with martial prowess."
+            },
+            "kingdom-of-noldor-lindon": {
+                name: "Kingdom of Noldor Lindon",
+                description: "The Noldor of Lindon are guardians of the West. In Epic Unity Rework, they excel in naval power and Elven archery."
+            },
+            "lindon": {
+                name: "Lindon",
+                description: "Lindon, the last Elven realm in the West, is a bastion of beauty. In Epic Unity Rework, they field elegant but deadly forces."
+            },
+            "lorien": {
+                name: "Lorien",
+                description: "Lorien, the Golden Wood, is home to Galadriel’s Elves. In Epic Unity Rework, they use stealth and powerful magic."
+            },
+            "mordor": {
+                name: "Mordor",
+                description: "Mordor, Sauron’s dark realm, is a land of fire and ash. In Epic Unity Rework, they dominate with orcs, trolls, and Nazgûl."
+            },
+            "northern-dunedain": {
+                name: "Northern Dúnedain",
+                description: "The Northern Dúnedain are rangers of the North. In Epic Unity Rework, they are skilled in stealth and guerrilla tactics."
+            },
+            "rebels": {
+                name: "Rebels",
+                description: "Rebels represent scattered factions resisting larger powers. In Epic Unity Rework, they are unpredictable and resourceful."
+            },
+            "rhun": {
+                name: "Rhun",
+                description: "Rhun, from the East, serves Sauron with fierce loyalty. In Epic Unity Rework, they field diverse units and powerful cavalry."
+            },
+            "rohan": {
+                name: "Rohan",
+                description: "Rohan, the land of the Horse-lords, is renowned for its riders. In Epic Unity Rework, they excel in cavalry charges and open-field battles."
+            },
+            "woodland-realm": {
+                name: "Woodland Realm",
+                description: "The Woodland Realm, ruled by Thranduil, thrives in Mirkwood. In Epic Unity Rework, they are masters of archery and forest warfare."
+            }
+        };
+
+        // Function to display faction details
+        function displayFactionDetails(factionKey) {
+            const factionDetails = document.getElementById('factionDetails');
+            const factionName = document.getElementById('factionName');
+            const factionDescription = document.getElementById('factionDescription');
+
+            if (factionKey && factions[factionKey]) {
+                factionName.textContent = factions[factionKey].name;
+                factionDescription.textContent = factions[factionKey].description;
+                factionDetails.style.display = 'block'; // Show the details container
+            } else {
+                factionDetails.style.display = 'none'; // Hide if no faction is selected
+            }
+        }
+    </script>
 </body>
 </html>
