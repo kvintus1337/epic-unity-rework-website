@@ -11,6 +11,7 @@
             font-family: 'Cinzel', serif;
             background-color: #1a1a1a; /* Charcoal */
             color: #d9d9d9; /* Soft off-white */
+            margin: 0;
         }
         h1, h2, h3 {
             font-family: 'Aniron', serif;
@@ -47,14 +48,74 @@
             text-align: center;
             margin-bottom: 0.5rem;
         }
+        /* Limit content width on large screens */
+        .container {
+            max-width: 1000px; /* Limit content width */
+        }
+        /* Navigation Styles */
+        nav {
+            background-color: #1a1a1a;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid #b89778;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links ul {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links ul li {
+            display: inline;
+        }
+        /* Hamburger Menu Icon */
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #b89778;
+        }
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-links ul {
+                display: none; /* Hide horizontal links on mobile */
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #1a1a1a;
+                padding: 1rem;
+                border-bottom: 1px solid #b89778;
+            }
+            .nav-links ul.active {
+                display: flex; /* Show dropdown when active */
+            }
+            .nav-links ul li {
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+            .hamburger {
+                display: block; /* Show hamburger icon on mobile */
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="bg-[#1a1a1a] p-4 sticky top-0 z-10 border-b border-[#b89778]">
-        <div class="container mx-auto flex justify-between items-center">
+    <nav>
+        <div class="container mx-auto flex justify-between items-center nav-links">
             <h1 class="text-xl font-bold">Epic Unity Rework</h1>
-            <ul class="flex space-x-6">
+            <div class="hamburger">☰</div>
+            <ul>
                 <li><a href="#home" class="hover:text-[#4a7c89]">Home</a></li>
                 <li><a href="#features" class="hover:text-[#4a7c89]">Gallery</a></li>
                 <li><a href="#download" class="hover:text-[#4a7c89]">Download</a></li>
@@ -167,6 +228,14 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // Toggle mobile menu
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links ul');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
     </script>
 </body>
