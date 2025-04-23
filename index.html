@@ -32,9 +32,13 @@
             color: #2f2f2f; /* Dark gray text */
         }
         .hero-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/eur-banner.jpg');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/new-hero-bg.jpg');
             background-size: cover;
             background-position: center;
+            min-height: 100vh; /* Ensure it takes full viewport height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .credits-list {
             background-color: #2b2e3b; /* Dark slate */
@@ -128,7 +132,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center hero-bg">
+    <section id="home" class="hero-bg">
         <div class="container mx-auto text-center px-4">
             <h2 class="text-4xl md:text-5xl font-bold mb-4">Epic Unity Rework</h2>
             <p class="text-lg md:text-xl mb-6">A grand overhaul for Divide and Conquer, forged in the fires of Middle-earth</p>
