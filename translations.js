@@ -41,9 +41,8 @@ const translations = {
         // Developers.html translations
         "developers.title": "Developers",
         "developers.theEye": "The Eye",
-        "developers.leadDeveloper": "Lead Developer",
-        "developers.developer": "Developer",
-        "developers.contributor": "Contributor",
+        "developers.developers": "Developers",
+        "developers.contributors": "Contributors",
 
         // Factions.html translations
         "factions.title": "Factions",
@@ -98,9 +97,8 @@ const translations = {
         // Developers.html translations
         "developers.title": "Twórcy",
         "developers.theEye": "Oko",
-        "developers.leadDeveloper": "Główny Twórca",
-        "developers.developer": "Twórca",
-        "developers.contributor": "Współtwórca",
+        "developers.developers": "Twórcy",
+        "developers.contributors": "Współtwórcy",
 
         // Factions.html translations
         "factions.title": "Frakcje",
