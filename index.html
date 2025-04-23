@@ -35,6 +35,18 @@
             background-size: cover;
             background-position: center;
         }
+        .credits-list {
+            background-color: #2b2e3b; /* Dark slate */
+            padding: 1.5rem;
+            max-width: 600px; /* Limit width for readability */
+            margin: 0 auto; /* Center the container */
+        }
+        .credits-list p {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -48,6 +60,7 @@
                 <li><a href="#download" class="hover:text-[#4a7c89]">Download</a></li>
                 <li><a href="#gallery" class="hover:text-[#4a7c89]">Credits</a></li>
                 <li><a href="factions.html" class="hover:text-[#4a7c89]">Factions</a></li>
+                <li><a href="submods.html" class="hover:text-[#4a7c89]">Submods</a></li>
                 <li><a href="#contact" class="hover:text-[#4a7c89]">Contact</a></li>
             </ul>
         </div>
@@ -110,19 +123,20 @@
     <section id="gallery" class="py-16 bg-[#1a1a1a]">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12">Credits</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-[#2b2e3b] rounded-lg overflow-hidden modern-border">
-                    <img src="images/screenshot1.jpg" alt="Epic Unity Rework battle scene" class="w-full h-auto">
-                    <p class="p-4">Battles ablaze with newfound splendor.</p>
-                </div>
-                <div class="bg-[#2b2e3b] rounded-lg overflow-hidden modern-border">
-                    <img src="images/screenshot2.jpg" alt="Epic Unity Rework campaign map" class="w-full h-auto">
-                    <p class="p-4">A campaign map reborn in glory.</p>
-                </div>
-                <div class="bg-[#2b2e3b] rounded-lg overflow-hidden modern-border">
-                    <img src="images/screenshot3.jpg" alt="Epic Unity Rework unit models" class="w-full h-auto">
-                    <p class="p-4">Units clad in intricate detail.</p>
-                </div>
+            <div class="credits-list modern-border">
+                <p>Dol Guldur Spiders - Botet mod</p>
+                <p>Single Sauron with Flames - AGO</p>
+                <p>Gondor Pikemen - SUS</p>
+                <p>Battle AI changes - EB2 (brought in by boogia)</p>
+                <p>TATW4.8 - many units, see faction channels below for breakdown</p>
+                <p>Third Age Reforged - many units, see faction channels below for breakdown</p>
+                <p>Noldor of Eregion 4.6 - 7 units</p>
+                <p>Empire of Rhun submod - full faction change, unit cards and UI updates, new custom generals</p>
+                <p>Campaign AI Shattered Alliances - Piotr's submod</p>
+                <p>Easterling Portraits - Naczeth</p>
+                <p>Artwork inspired by or used for the mod (icons/stickers/symbols) - <a href="https://www.instagram.com/tobias.s.nordin" target="_blank">Tobias S. Nordin</a></p>
+                <p>Main menu UI - WK</p>
+                <p>Skinchangers Model - Billbaraka</p>
             </div>
         </div>
     </section>
