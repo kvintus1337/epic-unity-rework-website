@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -50,6 +11,7 @@
             font-family: 'Cinzel', serif;
             background-color: #1a1a1a; /* Charcoal */
             color: #d9d9d9; /* Soft off-white */
+            margin: 0;
         }
         h1, h2, h3 {
             font-family: 'Aniron', serif;
@@ -77,14 +39,74 @@
             text-align: center;
             margin-bottom: 0.5rem;
         }
+        /* Limit content width on large screens */
+        .container {
+            max-width: 1000px; /* Limit content width */
+        }
+        /* Navigation Styles */
+        nav {
+            background-color: #1a1a1a;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid #b89778;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links ul {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links ul li {
+            display: inline;
+        }
+        /* Hamburger Menu Icon */
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #b89778;
+        }
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-links ul {
+                display: none; /* Hide horizontal links on mobile */
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #1a1a1a;
+                padding: 1rem;
+                border-bottom: 1px solid #b89778;
+            }
+            .nav-links ul.active {
+                display: flex; /* Show dropdown when active */
+            }
+            .nav-links ul li {
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+            .hamburger {
+                display: block; /* Show hamburger icon on mobile */
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="bg-[#1a1a1a] p-4 sticky top-0 z-10 border-b border-[#b89778]">
-        <div class="container mx-auto flex justify-between items-center">
+    <nav>
+        <div class="container mx-auto flex justify-between items-center nav-links">
             <h1 class="text-xl font-bold">Epic Unity Rework</h1>
-            <ul class="flex space-x-6">
+            <div class="hamburger">☰</div>
+            <ul>
                 <li><a href="index.html#home" class="hover:text-[#4a7c89]">Home</a></li>
                 <li><a href="index.html#features" class="hover:text-[#4a7c89]">Gallery</a></li>
                 <li><a href="index.html#download" class="hover:text-[#4a7c89]">Download</a></li>
@@ -110,5 +132,15 @@
     <footer class="bg-[#1a1a1a] p-4 text-center border-t border-[#b89778]">
         <p>© 2025 Epic Unity Rework. Forged for the Free Peoples of Middle-earth.</p>
     </footer>
+
+    <script>
+        // Toggle mobile menu
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links ul');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
