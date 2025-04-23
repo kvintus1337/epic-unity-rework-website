@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -65,6 +26,31 @@
             border: 1px solid #b89778; /* Solid muted gold border */
             border-radius: 8px;
         }
+        select {
+            font-family: 'Cinzel', serif;
+            background-color: #2b2e3b; /* Dark slate */
+            color: #d9d9d9; /* Soft off-white */
+            border: 1px solid #b89778; /* Muted gold border */
+            border-radius: 8px;
+            padding: 0.5rem;
+            width: 100%;
+            max-width: 300px; /* Limit width for better appearance */
+            height: 40px;
+            -webkit-appearance: none; /* Remove default dropdown arrow (for styling) */
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%23b89778" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Custom dropdown arrow */
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+        }
+        select:focus {
+            outline: none;
+            border-color: #4a7c89; /* Muted teal on focus */
+        }
+        select option {
+            background-color: #2b2e3b; /* Match dropdown background */
+            color: #d9d9d9; /* Soft off-white */
+        }
     </style>
 </head>
 <body>
@@ -85,100 +71,41 @@
 
     <!-- Factions Section -->
     <section id="factions" class="py-16 bg-[#1a1a1a]">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">Factions of Middle-earth</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Anduin Vale</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Angmar</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Ar Adunaim</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Blue Crag</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Dale</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Dol Guldur</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Dornwinion</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Dunland</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Enedwaith</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Erebor</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Ered Luin</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Goblins of Moria</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Gondor</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Gundabad</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Harad</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Imladris</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Isengard</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Khnd</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Khazad Dum</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Kingdom of Eregion</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Kingdom of Noldor Imladris</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Kingdom of Noldor Lindon</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Lindon</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Lorien</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Mordor</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Northern Dúnedain</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Rebels</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Rhun</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Rohan</h3>
-                </div>
-                <div class="bg-[#2b2e3b] p-6 rounded-lg modern-border">
-                    <h3 class="text-xl font-semibold mb-4">Woodland Realm</h3>
-                </div>
-            </div>
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-8">Choose a Faction</h2>
+            <select id="factionSelect" onchange="if(this.value) window.open(this.value, '_blank');">
+                <option value="" disabled selected>Select a faction...</option>
+                <option value="anduin-vale.html">Anduin Vale</option>
+                <option value="angmar.html">Angmar</option>
+                <option value="ar-adunaim.html">Ar Adunaim</option>
+                <option value="blue-crag.html">Blue Crag</option>
+                <option value="dale.html">Dale</option>
+                <option value="dol-guldur.html">Dol Guldur</option>
+                <option value="dornwinion.html">Dornwinion</option>
+                <option value="dunland.html">Dunland</option>
+                <option value="enedwaith.html">Enedwaith</option>
+                <option value="erebor.html">Erebor</option>
+                <option value="ered-luin.html">Ered Luin</option>
+                <option value="goblins-of-moria.html">Goblins of Moria</option>
+                <option value="gondor.html">Gondor</option>
+                <option value="gundabad.html">Gundabad</option>
+                <option value="harad.html">Harad</option>
+                <option value="imladris.html">Imladris</option>
+                <option value="isengard.html">Isengard</option>
+                <option value="khnd.html">Khnd</option>
+                <option value="khazad-dum.html">Khazad Dum</option>
+                <option value="kingdom-of-eregion.html">Kingdom of Eregion</option>
+                <option value="kingdom-of-noldor-imladris.html">Kingdom of Noldor Imladris</option>
+                <option value="kingdom-of-noldor-lindon.html">Kingdom of Noldor Lindon</option>
+                <option value="lindon.html">Lindon</option>
+                <option value="lorien.html">Lorien</option>
+                <option value="mordor.html">Mordor</option>
+                <option value="northern-dunedain.html">Northern Dúnedain</option>
+                <option value="rebels.html">Rebels</option>
+                <option value="rhun.html">Rhun</option>
+                <option value="rohan.html">Rohan</option>
+                <option value="woodland-realm.html">Woodland Realm</option>
+            </select>
         </div>
     </section>
 
