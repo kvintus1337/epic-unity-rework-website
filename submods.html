@@ -3,47 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epic Unity Rework - Submods</title>
+    <title data-i18n="submods.title">Submods - Epic Unity Rework</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Aniron&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Cinzel', serif;
-            background-color: #1a1a1a; /* Charcoal */
-            color: #d9d9d9; /* Soft off-white */
+            background-color: #1a1a1a;
+            color: #d9d9d9;
             margin: 0;
         }
         h1, h2, h3 {
             font-family: 'Aniron', serif;
-            color: #b89778; /* Muted gold */
+            color: #b89778;
         }
         a {
-            color: #6aa8b5; /* Soft teal for links */
+            color: #6aa8b5;
         }
         a:hover {
-            color: #4a7c89; /* Muted teal on hover */
+            color: #4a7c89;
         }
         .modern-border {
-            border: 1px solid #b89778; /* Solid muted gold border */
+            border: 1px solid #b89778;
             border-radius: 8px;
         }
-        .submods-list {
-            background-color: #2b2e3b; /* Dark slate */
-            padding: 1.5rem;
-            max-width: 600px; /* Limit width for readability */
-            margin: 0 auto; /* Center the container */
+        .parchment-card {
+            background-color: #e8d9b8;
+            color: #2f2f2f;
         }
-        .submods-list p {
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            text-align: center;
-            margin-bottom: 0.5rem;
-        }
-        /* Limit content width on large screens */
         .container {
-            max-width: 1000px; /* Limit content width */
+            max-width: 1000px;
         }
-        /* Navigation Styles */
         nav {
             background-color: #1a1a1a;
             padding: 1rem;
@@ -67,17 +57,52 @@
         .nav-links ul li {
             display: inline;
         }
-        /* Hamburger Menu Icon */
         .hamburger {
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
             color: #b89778;
         }
-        /* Mobile Styles */
+        .language-switcher {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .language-switcher button {
+            background: none;
+            border: none;
+            color: #6aa8b5;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+        }
+        .language-switcher button:hover {
+            color: #4a7c89;
+        }
+        .language-switcher button.active {
+            color: #b89778;
+            font-weight: bold;
+        }
+        .dropdown-header {
+            cursor: pointer;
+            padding: 1rem;
+            background-color: #2b2e3b;
+            border-bottom: 1px solid #b89778;
+        }
+        .dropdown-header:hover {
+            background-color: #3b3e4b;
+        }
+        .dropdown-content {
+            display: none;
+            padding: 1rem;
+            background-color: #e8d9b8;
+            color: #2f2f2f;
+        }
+        .dropdown-content.active {
+            display: block;
+        }
         @media (max-width: 768px) {
             .nav-links ul {
-                display: none; /* Hide horizontal links on mobile */
+                display: none;
                 flex-direction: column;
                 position: absolute;
                 top: 100%;
@@ -88,14 +113,17 @@
                 border-bottom: 1px solid #b89778;
             }
             .nav-links ul.active {
-                display: flex; /* Show dropdown when active */
+                display: flex;
             }
             .nav-links ul li {
                 margin: 0.5rem 0;
                 text-align: center;
             }
             .hamburger {
-                display: block; /* Show hamburger icon on mobile */
+                display: block;
+            }
+            .language-switcher {
+                margin-top: 1rem;
             }
         }
     </style>
@@ -105,41 +133,184 @@
     <nav>
         <div class="container mx-auto flex justify-between items-center nav-links">
             <h1 class="text-xl font-bold">Epic Unity Rework</h1>
-            <div class="hamburger">☰</div>
+            <div class="flex items-center gap-4">
+                <div class="language-switcher">
+                    <button class="language-btn" data-lang="en">EN</button>
+                    <button class="language-btn" data-lang="pl">PL</button>
+                </div>
+                <div class="hamburger">☰</div>
+            </div>
             <ul>
-                <li><a href="index.html#home" class="hover:text-[#4a7c89]">Home</a></li>
-                <li><a href="index.html#features" class="hover:text-[#4a7c89]">Gallery</a></li>
-                <li><a href="index.html#download" class="hover:text-[#4a7c89]">Download</a></li>
-                <li><a href="index.html#gallery" class="hover:text-[#4a7c89]">Credits</a></li>
-                <li><a href="factions.html" class="hover:text-[#4a7c89]">Factions</a></li>
-                <li><a href="submods.html" class="hover:text-[#4a7c89]">Submods</a></li>
-                <li><a href="index.html#contact" class="hover:text-[#4a7c89]">Contact</a></li>
+                <li><a href="index.html#home" class="hover:text-[#4a7c89]" data-i18n="nav.home">Home</a></li>
+                <li><a href="index.html#features" class="hover:text-[#4a7c89]" data-i18n="nav.gallery">Gallery</a></li>
+                <li><a href="index.html#download" class="hover:text-[#4a7c89]" data-i18n="nav.download">Download</a></li>
+                <li><a href="index.html#gallery" class="hover:text-[#4a7c89]" data-i18n="nav.credits">Credits</a></li>
+                <li><a href="developers.html" class="hover:text-[#4a7c89]" data-i18n="nav.developers">Developers</a></li>
+                <li><a href="factions.html" class="hover:text-[#4a7c89]" data-i18n="nav.factions">Factions</a></li>
+                <li><a href="submods.html" class="hover:text-[#4a7c89]" data-i18n="nav.submods">Submods</a></li>
+                <li><a href="partners.html" class="hover:text-[#4a7c89]" data-i18n="nav.partners">Partners</a></li>
+                <li><a href="index.html#contact" class="hover:text-[#4a7c89]" data-i18n="nav.contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Submods Section -->
-    <section id="submods" class="py-16 bg-[#1a1a1a]">
+    <section class="py-16 bg-[#1a1a1a]">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">Submods</h2>
-            <div class="submods-list modern-border">
-                <p><a href="https://drive.google.com/file/d/1yZIdQ96gjMiCKFOvrUqTKqLEoC3QMKH3/view?usp=sharing" target="_blank">New Soundtrack submod v1.1.1</a> by BigSharky</p>
+            <h2 class="text-3xl font-bold text-center mb-12" data-i18n="submods.title">Submods</h2>
+            <div class="max-w-2xl mx-auto">
+                <!-- Submod 1: New Soundtrack submod v1.1.1 -->
+                <div class="modern-border">
+                    <div class="dropdown-header flex justify-between items-center">
+                        <h3 class="text-xl">New Soundtrack submod v1.1.1 by BigSharky</h3>
+                        <span class="text-2xl">▼</span>
+                    </div>
+                    <div class="dropdown-content">
+                        <p class="mb-4"><strong>Key features:</strong><br>
+                        Good audio quality<br>
+                        Core factions (Gondor, Dúnedain, Rohan, Mordor, Isengard, Elves and Dwarves) are 95% Howard Shore music.<br>
+                        New music for other factions<br>
+                        New endturn sounds for all cultures</p>
+
+                        <p class="mb-4">Download DaC v5 New Soundtrack submod v1.1.1:<br>
+                        <a href="https://drive.google.com/file/d/1yZIdQ96gjMiCKFOvrUqTKqLEoC3QMKH3/view?usp=sharing" class="text-[#6aa8b5]" target="_blank">https://drive.google.com/file/d/1yZIdQ96gjMiCKFOvrUqTKqLEoC3QMKH3/view?usp=sharing</a></p>
+
+                        <p class="mb-4"><strong>Installation:</strong><br>
+                        Download & open archive<br>
+                        PLEASE MAKE A BACKUP of your files before replacing them<br>
+                        Copy contents of the archive to the Divide_and_Conquer_EUR mod folder</p>
+
+                        <p class="mb-4"><strong>Compatibility:</strong><br>
+                        Submod is compatible with EUR & DaC v5, DaC v4.5 & AGO</p>
+
+                        <p class="mb-4"><strong>Short list of used music:</strong><br>
+                        The Lord of the Rings trilogy<br>
+                        The Hobbit trilogy<br>
+                        The Battle For Middle-Earth I & II<br>
+                        The LotR War In the North (Angmar)<br>
+                        Middle-Earth: Shadow of Mordor & Shadow Of War (Rhûn, Haradrim, Khand & Ar-Adûnâim)<br>
+                        SpellForce 3: Fallen God (Gundabad & Goblins of Moria)<br>
+                        The Elder Scrolls Online: Music of Tamriel, Vol. 1 & 2 (Dorwinion & Anduin Vale)<br>
+                        The Northman (Dunlendings & Clans of Enedwaith)<br>
+                        And several more albums. You can check all music sources in _MUSIC_LIST.txt inside the archive.</p>
+
+                        <p class="mb-4"><strong>IMPORTANT!</strong><br>
+                        This isn't final version so let me know what you think & what should be improved.<br>
+                        Also, I’d be glad to hear your music recommendations to help further expand the mod's soundtrack.</p>
+
+                        <p>Thanks for checking this out, and I hope you enjoy the music! 🙂</p>
+                    </div>
+                </div>
+
+                <!-- Submod 2: AGO reskin of Ar Adunaim faction -->
+                <div class="modern-border mt-4">
+                    <div class="dropdown-header flex justify-between items-center">
+                        <h3 class="text-xl">AGO reskin of Ar Adunaim faction by DutyCorporal and Majmunee</h3>
+                        <span class="text-2xl">▼</span>
+                    </div>
+                    <div class="dropdown-content">
+                        <p class="mb-4">AGO reskin of Ar Adunaim faction, general bodyguard done as well.<br>
+                        Control camp values tweaked as well and units are balanced for EUR.</p>
+
+                        <p>Download AGO reskin of Ar Adunaim faction:<br>
+                        <a href="https://www.dropbox.com/scl/fi/5n0962hghfirrdaxrbijk/Ar-Adunaim-Mod.7z?rlkey=fl038jvwjxo8hu8hschyu1ef6&st=7vnjkwob&dl=0" class="text-[#6aa8b5]" target="_blank">https://www.dropbox.com/scl/fi/5n0962hghfirrdaxrbijk/Ar-Adunaim-Mod.7z?rlkey=fl038jvwjxo8hu8hschyu1ef6&st=7vnjkwob&dl=0</a></p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-[#1a1a1a] p-4 text-center border-t border-[#b89778]">
-        <p>© 2025 Epic Unity Rework. Forged for the Free Peoples of Middle-earth.</p>
+        <p data-i18n="footer">© 2025 Epic Unity Rework. Forged for the Free Peoples of Middle-earth.</p>
     </footer>
 
     <script>
+        // Translations object
+        const translations = {
+            en: {
+                "submods.title": "Submods",
+                "nav.home": "Home",
+                "nav.gallery": "Gallery",
+                "nav.download": "Download",
+                "nav.credits": "Credits",
+                "nav.developers": "Developers",
+                "nav.factions": "Factions",
+                "nav.submods": "Submods",
+                "nav.partners": "Partners",
+                "nav.contact": "Contact",
+                "footer": "© 2025 Epic Unity Rework. Forged for the Free Peoples of Middle-earth."
+            },
+            pl: {
+                "submods.title": "Podmody",
+                "nav.home": "Strona Główna",
+                "nav.gallery": "Galeria",
+                "nav.download": "Pobierz",
+                "nav.credits": "Podziękowania",
+                "nav.developers": "Twórcy",
+                "nav.factions": "Frakcje",
+                "nav.submods": "Podmody",
+                "nav.partners": "Partnerzy",
+                "nav.contact": "Kontakt",
+                "footer": "© 2025 Epic Unity Rework. Wykuta dla Wolnych Ludów Śródziemia."
+            }
+        };
+
+        // Function to set the language
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                element.innerHTML = translations[lang][key] || element.innerHTML;
+            });
+
+            // Update active button
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+
+            // Update document language
+            document.documentElement.lang = lang;
+            localStorage.setItem('language', lang);
+        }
+
+        // Load saved language or default to English
+        const savedLang = localStorage.getItem('language') || 'en';
+        setLanguage(savedLang);
+
+        // Language switcher event listeners
+        document.querySelectorAll('.language-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                setLanguage(lang);
+            });
+        });
+
         // Toggle mobile menu
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links ul');
 
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+        });
+
+        // Dropdown toggle functionality
+        document.querySelectorAll('.dropdown-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const isActive = content.classList.contains('active');
+
+                // Close all dropdowns
+                document.querySelectorAll('.dropdown-content').forEach(item => {
+                    item.classList.remove('active');
+                    item.previousElementSibling.querySelector('span').textContent = '▼';
+                });
+
+                // Toggle the clicked dropdown
+                if (!isActive) {
+                    content.classList.add('active');
+                    header.querySelector('span').textContent = '▲';
+                }
+            });
         });
     </script>
 </body>
