@@ -3,79 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epic Unity Rework - Factions</title>
+    <title data-i18n="factions.title">Factions - Epic Unity Rework</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Aniron&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Cinzel', serif;
-            background-color: #1a1a1a; /* Charcoal */
-            color: #d9d9d9; /* Soft off-white */
+            background-color: #1a1a1a;
+            color: #d9d9d9;
             margin: 0;
         }
         h1, h2, h3 {
             font-family: 'Aniron', serif;
-            color: #b89778; /* Muted gold */
+            color: #b89778;
         }
         a {
-            color: #6aa8b5; /* Soft teal for links */
+            color: #6aa8b5;
         }
         a:hover {
-            color: #4a7c89; /* Muted teal on hover */
+            color: #4a7c89;
         }
         .modern-border {
-            border: 1px solid #b89778; /* Solid muted gold border */
+            border: 1px solid #b89778;
             border-radius: 8px;
         }
-        select {
-            font-family: 'Cinzel', serif;
-            background-color: #2b2e3b; /* Dark slate */
-            color: #d9d9d9; /* Soft off-white */
-            border: 1px solid #b89778; /* Muted gold border */
-            border-radius: 8px;
-            padding: 0.5rem;
-            width: 100%;
-            max-width: 300px; /* Limit width for better appearance */
-            height: 40px;
-            -webkit-appearance: none; /* Remove default dropdown arrow */
-            -moz-appearance: none;
-            appearance: none;
-            background-image: url('data:image/svg+xml;utf8,<svg fill="%23b89778" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Custom dropdown arrow */
-            background-repeat: no-repeat;
-            background-position: right 0.5rem center;
+        .parchment-card {
+            background-color: #e8d9b8;
+            color: #2f2f2f;
         }
-        select:focus {
-            outline: none;
-            border-color: #4a7c89; /* Muted teal on focus */
-        }
-        select option {
-            background-color: #2b2e3b; /* Match dropdown background */
-            color: #d9d9d9; /* Soft off-white */
-        }
-        #factionDetails {
-            display: none; /* Hidden by default */
-            margin-top: 2rem;
-            background-color: #2b2e3b; /* Dark slate */
-            padding: 1.5rem;
-            border-radius: 8px;
-            max-width: 600px; /* Limit width for readability */
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #factionDetails h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        #factionDetails p {
-            font-size: 1rem;
-            text-align: center;
-        }
-        /* Limit content width on large screens */
         .container {
-            max-width: 1000px; /* Limit content width */
+            max-width: 1000px;
         }
-        /* Navigation Styles */
         nav {
             background-color: #1a1a1a;
             padding: 1rem;
@@ -99,17 +57,63 @@
         .nav-links ul li {
             display: inline;
         }
-        /* Hamburger Menu Icon */
         .hamburger {
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
             color: #b89778;
         }
-        /* Mobile Styles */
+        .language-switcher {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .language-switcher button {
+            background: none;
+            border: none;
+            color: #6aa8b5;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+        }
+        .language-switcher button:hover {
+            color: #4a7c89;
+        }
+        .language-switcher button.active {
+            color: #b89778;
+            font-weight: bold;
+        }
+        select {
+            background-color: #2b2e3b;
+            color: #d9d9d9;
+            border: 1px solid #b89778;
+            border-radius: 4px;
+            padding: 0.5rem;
+            font-family: 'Cinzel', serif;
+            width: 100%;
+            max-width: 300px;
+            cursor: pointer;
+        }
+        select:focus {
+            outline: none;
+            border-color: #6aa8b5;
+        }
+        option {
+            background-color: #2b2e3b;
+            color: #d9d9d9;
+        }
+        .faction-content {
+            display: none;
+            padding: 1rem;
+            background-color: #e8d9b8;
+            color: #2f2f2f;
+            margin-top: 1rem;
+        }
+        .faction-content.active {
+            display: block;
+        }
         @media (max-width: 768px) {
             .nav-links ul {
-                display: none; /* Hide horizontal links on mobile */
+                display: none;
                 flex-direction: column;
                 position: absolute;
                 top: 100%;
@@ -120,14 +124,17 @@
                 border-bottom: 1px solid #b89778;
             }
             .nav-links ul.active {
-                display: flex; /* Show dropdown when active */
+                display: flex;
             }
             .nav-links ul li {
                 margin: 0.5rem 0;
                 text-align: center;
             }
             .hamburger {
-                display: block; /* Show hamburger icon on mobile */
+                display: block;
+            }
+            .language-switcher {
+                margin-top: 1rem;
             }
         }
     </style>
@@ -137,207 +144,226 @@
     <nav>
         <div class="container mx-auto flex justify-between items-center nav-links">
             <h1 class="text-xl font-bold">Epic Unity Rework</h1>
-            <div class="hamburger">☰</div>
+            <div class="flex items-center gap-4">
+                <div class="language-switcher">
+                    <button class="language-btn" data-lang="en">EN</button>
+                    <button class="language-btn" data-lang="pl">PL</button>
+                </div>
+                <div class="hamburger">☰</div>
+            </div>
             <ul>
-                <li><a href="index.html#home" class="hover:text-[#4a7c89]">Home</a></li>
-                <li><a href="index.html#features" class="hover:text-[#4a7c89]">Gallery</a></li>
-                <li><a href="index.html#download" class="hover:text-[#4a7c89]">Download</a></li>
-                <li><a href="index.html#gallery" class="hover:text-[#4a7c89]">Credits</a></li>
-                <li><a href="factions.html" class="hover:text-[#4a7c89]">Factions</a></li>
-                <li><a href="submods.html" class="hover:text-[#4a7c89]">Submods</a></li>
-                <li><a href="index.html#contact" class="hover:text-[#4a7c89]">Contact</a></li>
+                <li><a href="index.html#home" class="hover:text-[#4a7c89]" data-i18n="nav.home">Home</a></li>
+                <li><a href="index.html#features" class="hover:text-[#4a7c89]" data-i18n="nav.gallery">Gallery</a></li>
+                <li><a href="index.html#download" class="hover:text-[#4a7c89]" data-i18n="nav.download">Download</a></li>
+                <li><a href="index.html#gallery" class="hover:text-[#4a7c89]" data-i18n="nav.credits">Credits</a></li>
+                <li><a href="developers.html" class="hover:text-[#4a7c89]" data-i18n="nav.developers">Developers</a></li>
+                <li><a href="factions.html" class="hover:text-[#4a7c89]" data-i18n="nav.factions">Factions</a></li>
+                <li><a href="submods.html" class="hover:text-[#4a7c89]" data-i18n="nav.submods">Submods</a></li>
+                <li><a href="partners.html" class="hover:text-[#4a7c89]" data-i18n="nav.partners">Partners</a></li>
+                <li><a href="index.html#contact" class="hover:text-[#4a7c89]" data-i18n="nav.contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Factions Section -->
-    <section id="factions" class="py-16 bg-[#1a1a1a]">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-8">Choose a Faction</h2>
-            <select id="factionSelect" onchange="displayFactionDetails(this.value)">
-                <option value="" disabled selected>Select a faction...</option>
-                <option value="anduin-vale">Anduin Vale</option>
-                <option value="angmar">Angmar</option>
-                <option value="ar-adunaim">Ar Adunaim</option>
-                <option value="blue-crag">Blue Crag</option>
-                <option value="dale">Dale</option>
-                <option value="dol-guldur">Dol Guldur</option>
-                <option value="dornwinion">Dornwinion</option>
-                <option value="dunland">Dunland</option>
-                <option value="enedwaith">Enedwaith</option>
-                <option value="erebor">Erebor</option>
-                <option value="ered-luin">Ered Luin</option>
-                <option value="goblins-of-moria">Goblins of Moria</option>
-                <option value="gondor">Gondor</option>
-                <option value="gundabad">Gundabad</option>
-                <option value="harad">Harad</option>
-                <option value="imladris">Imladris</option>
-                <option value="isengard">Isengard</option>
-                <option value="khnd">Khnd</option>
-                <option value="khazad-dum">Khazad Dum</option>
-                <option value="kingdom-of-eregion">Kingdom of Eregion</option>
-                <option value="kingdom-of-noldor-imladris">Kingdom of Noldor Imladris</option>
-                <option value="kingdom-of-noldor-lindon">Kingdom of Noldor Lindon</option>
-                <option value="lindon">Lindon</option>
-                <option value="lorien">Lorien</option>
-                <option value="mordor">Mordor</option>
-                <option value="northern-dunedain">Northern Dúnedain</option>
-                <option value="rebels">Rebels</option>
-                <option value="rhun">Rhun</option>
-                <option value="rohan">Rohan</option>
-                <option value="woodland-realm">Woodland Realm</option>
-            </select>
-            <div id="factionDetails" class="modern-border">
-                <h3 id="factionName"></h3>
-                <p id="factionDescription"></p>
+    <section class="py-16 bg-[#1a1a1a]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12" data-i18n="factions.title">Factions</h2>
+            <div class="max-w-2xl mx-auto">
+                <!-- Faction Selection Dropdown -->
+                <select id="faction-select" class="mb-4">
+                    <option value="" disabled selected data-i18n="factions.select">SELECT A FACTION...</option>
+                    <option value="gondor">gondor</option>
+                    <option value="northern-dunedain">northern-dunedain</option>
+                    <option value="rohan">rohan</option>
+                    <option value="erebor">erebor</option>
+                    <option value="ered-luin">ered-luin</option>
+                    <option value="khazad-dum">khazad-dum</option>
+                    <option value="imladris">imladris</option>
+                    <option value="lindon">lindon</option>
+                    <option value="woodland-realm">woodland-realm</option>
+                    <option value="lothlorien">lothlorien</option>
+                    <option value="anduin-vale">anduin-vale</option>
+                    <option value="dorwinion">dorwinion</option>
+                    <option value="kingdom-of-dale">kingdom-of-dale</option>
+                    <option value="bree-land">bree-land</option>
+                    <option value="clans-of-enedwaith">clans-of-enedwaith</option>
+                    <option value="mordor">mordor</option>
+                    <option value="isengard">isengard</option>
+                    <option value="gundabad">gundabad</option>
+                    <option value="dol-guldur">dol-guldur</option>
+                    <option value="moria">moria</option>
+                    <option value="angmar">angmar</option>
+                    <option value="blue-crag">blue-crag</option>
+                    <option value="ar-adûnaim">ar-adûnaim</option>
+                    <option value="rhun">rhun</option>
+                    <option value="harad">harad</option>
+                    <option value="khand">khand</option>
+                    <option value="dunland">dunland</option>
+                </select>
+
+                <!-- Faction Content -->
+                <div id="gondor-content" class="faction-content modern-border">
+                    <h4 class="text-2xl font-bold mb-4 text-center">Gondor faction overview</h4>
+                    <img src="https://i.imgur.com/gGzrwM0.png" alt="Gondor Symbol" class="max-w-full h-auto mx-auto mb-4">
+                    <h5 class="text-xl font-semibold mb-2">Roster changes</h5>
+                    <img src="https://i.imgur.com/amWp9CA.png" alt="Roster Changes 1" class="max-w-full h-auto mx-auto my-4">
+                    <p class="mb-4">New Expanded Mod Custom battle Units- 6 new units (TAR and SUS) and 2 deletions</p>
+                    <img src="https://i.imgur.com/4JFetB2.png" alt="Roster Changes 2" class="max-w-full h-auto mx-auto my-4">
+                    <img src="https://i.imgur.com/0KCOGkm.png" alt="Roster Changes 3" class="max-w-full h-auto mx-auto my-4">
+                    <p class="mb-4">EOPEDU Units- Units available to the faction but not shown in Custom battles- 2 units (one from TAR)</p>
+                    <h4 class="text-2xl font-bold mb-4">EVENTS AND SCRIPTS</h4>
+                    <p class="mb-4">In V1 Gondor does not have any new events or scripts</p>
+                    <p>Gondor in EUR has seen some changes to its roster, most notably the addition of Pikemen thanks to SUS mod. The faction remains a defensive powerhouse with strong infantry and access to elite units, ideal for players who enjoy a strategic, hold-the-line playstyle.</p>
+                </div>
+                <div id="northern-dunedain-content" class="faction-content modern-border">
+                    <p>The northern-dunedain in EUR are a ranger-focused faction, excelling in stealth and ambushes. They are perfect for players who like a guerrilla warfare approach.</p>
+                </div>
+                <div id="rohan-content" class="faction-content modern-border">
+                    <p>Rohan in EUR emphasizes its cavalry dominance, with new units and tweaks that enhance its hit-and-run tactics. The faction excels in open-field battles, making it a favorite for players who prefer mobility and flanking maneuvers.</p>
+                </div>
+                <div id="erebor-content" class="faction-content modern-border">
+                    <p>Erebor in EUR is a sturdy faction with strong infantry and siege defenses. They are perfect for players who like to dig in and hold their ground.</p>
+                </div>
+                <div id="ered-luin-content" class="faction-content modern-border">
+                    <p>Ered-luin in EUR is a dwarven faction with a focus on trade and defense. They suit players who enjoy a balanced, defensive campaign.</p>
+                </div>
+                <div id="khazad-dum-content" class="faction-content modern-border">
+                    <p>Khazad-dum in EUR focuses on heavy armor and underground combat. They are ideal for players who enjoy a defensive, slow-paced strategy.</p>
+                </div>
+                <div id="imladris-content" class="faction-content modern-border">
+                    <p>Imladris in EUR is an elite elven faction with strong cavalry. They are perfect for players who enjoy a balanced, elegant playstyle.</p>
+                </div>
+                <div id="lindon-content" class="faction-content modern-border">
+                    <p>Lindon in EUR focuses on naval power and elven infantry. They suit players who enjoy a maritime, defensive campaign.</p>
+                </div>
+                <div id="woodland-realm-content" class="faction-content modern-border">
+                    <p>The woodland-realm in EUR excels in forest combat with elite archers. They are ideal for players who prefer a defensive, ranged playstyle.</p>
+                </div>
+                <div id="lothlorien-content" class="faction-content modern-border">
+                    <p>Lothlorien in EUR features powerful elven units and magic. They suit players who enjoy a mystical, defensive campaign.</p>
+                </div>
+                <div id="anduin-vale-content" class="faction-content modern-border">
+                    <p>The anduin-vale in EUR focuses on light infantry and archers. They are perfect for players who enjoy a nature-based campaign.</p>
+                </div>
+                <div id="dorwinion-content" class="faction-content modern-border">
+                    <p>Dorwinion in EUR is a trade-focused faction with strong infantry. They suit players who enjoy an economic and defensive playstyle.</p>
+                </div>
+                <div id="kingdom-of-dale-content" class="faction-content modern-border">
+                    <p>Kingdom-of-dale in EUR is a versatile faction with strong archers and cavalry. They suit players who enjoy a balanced playstyle with a focus on ranged combat.</p>
+                </div>
+                <div id="bree-land-content" class="faction-content modern-border">
+                    <p>Bree-land in EUR is a small but resilient faction, focusing on militia and light infantry. They suit players who enjoy a challenging underdog campaign.</p>
+                </div>
+                <div id="clans-of-enedwaith-content" class="faction-content modern-border">
+                    <p>Clans-of-enedwaith in EUR is a rugged faction with a focus on light infantry and skirmishers. They are ideal for players who enjoy a survivalist playstyle.</p>
+                </div>
+                <div id="mordor-content" class="faction-content modern-border">
+                    <p>Mordor in EUR has been bolstered with new orc units and the inclusion of Single Sauron with Flames from AGO. This faction is perfect for players who enjoy overwhelming their enemies with sheer numbers and dark magic.</p>
+                </div>
+                <div id="isengard-content" class="faction-content modern-border">
+                    <p>Isengard in EUR features enhanced Uruk-hai units and improved siege capabilities. The faction is well-suited for aggressive players who enjoy industrial might and disciplined infantry assaults.</p>
+                </div>
+                <div id="gundabad-content" class="faction-content modern-border">
+                    <p>Gundabad in EUR is a brutal orc faction with heavy infantry. They suit players who prefer a straightforward, aggressive campaign.</p>
+                </div>
+                <div id="dol-guldur-content" class="faction-content modern-border">
+                    <p>Dol-guldur in EUR features spiders and dark sorcery. They are perfect for players who enjoy a sinister, magic-focused playstyle.</p>
+                </div>
+                <div id="moria-content" class="faction-content modern-border">
+                    <p>Moria in EUR relies on swarms and underground tactics. They are ideal for players who enjoy a swarm-based playstyle.</p>
+                </div>
+                <div id="angmar-content" class="faction-content modern-border">
+                    <p>Angmar in EUR combines trolls, wraiths, and dark magic. They suit players who enjoy a chilling, supernatural campaign.</p>
+                </div>
+                <div id="blue-crag-content" class="faction-content modern-border">
+                    <p>Blue-crag in EUR is an orc faction with a focus on rugged terrain combat. They suit players who enjoy a challenging, aggressive campaign.</p>
+                </div>
+                <div id="ar-adûnaim-content" class="faction-content modern-border">
+                    <p>The ar-adûnaim in EUR are a dark, naval faction with elite infantry. They suit players who enjoy a disciplined, aggressive campaign.</p>
+                </div>
+                <div id="rhun-content" class="faction-content modern-border">
+                    <p>Rhun in EUR has a unique roster with heavy cavalry and archers. They are perfect for players who enjoy an eastern-themed campaign with a mix of units.</p>
+                </div>
+                <div id="harad-content" class="faction-content modern-border">
+                    <p>Harad in EUR features exotic units like Mûmakil and serpent guards. They suit players who enjoy a diverse roster and aggressive expansion.</p>
+                </div>
+                <div id="khand-content" class="faction-content modern-border">
+                    <p>Khand in EUR focuses on fast-moving cavalry and skirmishers. They suit players who prefer a nomadic, hit-and-run playstyle.</p>
+                </div>
+                <div id="dunland-content" class="faction-content modern-border">
+                    <p>Dunland in EUR is a tribal faction with fierce warriors and light cavalry. They suit players who prefer an aggressive, fast-paced campaign.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-[#1a1a1a] p-4 text-center border-t border-[#b89778]">
-        <p>© 2025 Epic Unity Rework. Forged for the Free Peoples of Middle-earth.</p>
+        <p data-i18n="footer">© 2025 Epic Unity Rework. Forged for the Free Peoples of Middle-earth.</p>
     </footer>
 
     <script>
-        // Faction data
-        const factions = {
-            "anduin-vale": {
-                name: "Anduin Vale",
-                description: "The Anduin Vale, nestled along the Great River, is home to resilient folk who thrive in harmony with nature. In Epic Unity Rework, this faction excels in defensive strategies and river-based warfare."
+        // Translations object
+        const translations = {
+            en: {
+                "factions.title": "Factions",
+                "factions.select": "SELECT A FACTION...",
+                "nav.home": "Home",
+                "nav.gallery": "Gallery",
+                "nav.download": "Download",
+                "nav.credits": "Credits",
+                "nav.developers": "Developers",
+                "nav.factions": "Factions",
+                "nav.submods": "Submods",
+                "nav.partners": "Partners",
+                "nav.contact": "Contact",
+                "footer": "© 2025 Epic Unity Rework. Forged for the Free Peoples of Middle-earth."
             },
-            "angmar": {
-                name: "Angmar",
-                description: "Angmar, a dark realm in the north, is ruled by the Witch-king. This faction in Epic Unity Rework specializes in dark sorcery and overwhelming infantry assaults."
-            },
-            "ar-adunaim": {
-                name: "Ar Adunaim",
-                description: "The Ar Adunaim are descendants of Númenor, now turned to darker paths. In Epic Unity Rework, they wield powerful naval forces and elite infantry."
-            },
-            "blue-crag": {
-                name: "Blue Crag",
-                description: "The Blue Crag goblins are a savage faction hiding in the mountains. In Epic Unity Rework, they rely on ambushes and swarm tactics."
-            },
-            "dale": {
-                name: "Dale",
-                description: "Dale, a prosperous city of Men, stands as a beacon of hope in the North. In Epic Unity Rework, they are known for their skilled archers and trade wealth."
-            },
-            "dol-guldur": {
-                name: "Dol Guldur",
-                description: "Dol Guldur, a stronghold of Sauron’s forces, is shrouded in darkness. In Epic Unity Rework, this faction uses fear and dark creatures to dominate."
-            },
-            "dornwinion": {
-                name: "Dornwinion",
-                description: "Dornwinion is famed for its wine and wealth in the East. In Epic Unity Rework, they excel in trade and cavalry."
-            },
-            "dunland": {
-                name: "Dunland",
-                description: "The wild men of Dunland are fierce and untamed. In Epic Unity Rework, they are masters of guerrilla warfare and swift raids."
-            },
-            "enedwaith": {
-                name: "Enedwaith",
-                description: "Enedwaith’s people live in the wild lands between Gondor and the North. In Epic Unity Rework, they are versatile and adept at survival."
-            },
-            "erebor": {
-                name: "Erebor",
-                description: "Erebor, the Lonely Mountain, is home to the Dwarves of Durin’s Folk. In Epic Unity Rework, they boast strong defenses and master craftsmanship."
-            },
-            "ered-luin": {
-                name: "Ered Luin",
-                description: "Ered Luin, the Blue Mountains, houses Dwarven strongholds. In Epic Unity Rework, they focus on mining and sturdy infantry."
-            },
-            "goblins-of-moria": {
-                name: "Goblins of Moria",
-                description: "The Goblins of Moria lurk in the depths of the ancient Dwarven city. In Epic Unity Rework, they use numbers and traps to overwhelm foes."
-            },
-            "gondor": {
-                name: "Gondor",
-                description: "Gondor, the great kingdom of Men, stands as a bulwark against Mordor. In Epic Unity Rework, they are known for disciplined armies and strong fortifications."
-            },
-            "gundabad": {
-                name: "Gundabad",
-                description: "Gundabad is a stronghold of orcs in the North. In Epic Unity Rework, they rely on brute strength and large warbands."
-            },
-            "harad": {
-                name: "Harad",
-                description: "Harad, from the deserts of the South, brings exotic warriors to the fight. In Epic Unity Rework, they use mûmakil and swift cavalry."
-            },
-            "imladris": {
-                name: "Imladris",
-                description: "Imladris, or Rivendell, is a haven of the Elves. In Epic Unity Rework, they excel in wisdom, magic, and elite warriors."
-            },
-            "isengard": {
-                name: "Isengard",
-                description: "Isengard, under Saruman’s rule, is a war machine of industry. In Epic Unity Rework, they field Uruk-hai and siege weapons."
-            },
-            "khnd": {
-                name: "Khnd",
-                description: "Khnd represents the eastern tribes aligned with Sauron. In Epic Unity Rework, they are fierce and use versatile units."
-            },
-            "khazad-dum": {
-                name: "Khazad Dum",
-                description: "Khazad Dum, or Moria, was once a Dwarven kingdom. In Epic Unity Rework, this faction can reclaim its glory with powerful Dwarven units."
-            },
-            "kingdom-of-eregion": {
-                name: "Kingdom of Eregion",
-                description: "Eregion, an ancient Elven realm, is steeped in history. In Epic Unity Rework, they wield ancient craftsmanship and Elven magic."
-            },
-            "kingdom-of-noldor-imladris": {
-                name: "Kingdom of Noldor Imladris",
-                description: "The Noldor of Imladris are a noble Elven faction. In Epic Unity Rework, they combine Elven grace with martial prowess."
-            },
-            "kingdom-of-noldor-lindon": {
-                name: "Kingdom of Noldor Lindon",
-                description: "The Noldor of Lindon are guardians of the West. In Epic Unity Rework, they excel in naval power and Elven archery."
-            },
-            "lindon": {
-                name: "Lindon",
-                description: "Lindon, the last Elven realm in the West, is a bastion of beauty. In Epic Unity Rework, they field elegant but deadly forces."
-            },
-            "lorien": {
-                name: "Lorien",
-                description: "Lorien, the Golden Wood, is home to Galadriel’s Elves. In Epic Unity Rework, they use stealth and powerful magic."
-            },
-            "mordor": {
-                name: "Mordor",
-                description: "Mordor, Sauron’s dark realm, is a land of fire and ash. In Epic Unity Rework, they dominate with orcs, trolls, and Nazgûl."
-            },
-            "northern-dunedain": {
-                name: "Northern Dúnedain",
-                description: "The Northern Dúnedain are rangers of the North. In Epic Unity Rework, they are skilled in stealth and guerrilla tactics."
-            },
-            "rebels": {
-                name: "Rebels",
-                description: "Rebels represent scattered factions resisting larger powers. In Epic Unity Rework, they are unpredictable and resourceful."
-            },
-            "rhun": {
-                name: "Rhun",
-                description: "Rhun, from the East, serves Sauron with fierce loyalty. In Epic Unity Rework, they field diverse units and powerful cavalry."
-            },
-            "rohan": {
-                name: "Rohan",
-                description: "Rohan, the land of the Horse-lords, is renowned for its riders. In Epic Unity Rework, they excel in cavalry charges and open-field battles."
-            },
-            "woodland-realm": {
-                name: "Woodland Realm",
-                description: "The Woodland Realm, ruled by Thranduil, thrives in Mirkwood. In Epic Unity Rework, they are masters of archery and forest warfare."
+            pl: {
+                "factions.title": "Frakcje",
+                "factions.select": "WYBIERZ FRAKCJĘ...",
+                "nav.home": "Strona Główna",
+                "nav.gallery": "Galeria",
+                "nav.download": "Pobierz",
+                "nav.credits": "Podziękowania",
+                "nav.developers": "Twórcy",
+                "nav.factions": "Frakcje",
+                "nav.submods": "Podmody",
+                "nav.partners": "Partnerzy",
+                "nav.contact": "Kontakt",
+                "footer": "© 2025 Epic Unity Rework. Wykuta dla Wolnych Ludów Śródziemia."
             }
         };
 
-        // Function to display faction details
-        function displayFactionDetails(factionKey) {
-            const factionDetails = document.getElementById('factionDetails');
-            const factionName = document.getElementById('factionName');
-            const factionDescription = document.getElementById('factionDescription');
+        // Function to set the language
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                element.innerHTML = translations[lang][key] || element.innerHTML;
+            });
 
-            if (factionKey && factions[factionKey]) {
-                factionName.textContent = factions[factionKey].name;
-                factionDescription.textContent = factions[factionKey].description;
-                factionDetails.style.display = 'block'; // Show the details container
-            } else {
-                factionDetails.style.display = 'none'; // Hide if no faction is selected
-            }
+            // Update active button
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+
+            // Update document language
+            document.documentElement.lang = lang;
+            localStorage.setItem('language', lang);
         }
+
+        // Load saved language or default to English
+        const savedLang = localStorage.getItem('language') || 'en';
+        setLanguage(savedLang);
+
+        // Language switcher event listeners
+        document.querySelectorAll('.language-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                setLanguage(lang);
+            });
+        });
 
         // Toggle mobile menu
         const hamburger = document.querySelector('.hamburger');
@@ -345,6 +371,27 @@
 
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+        });
+
+        // Faction selection functionality
+        const factionSelect = document.getElementById('faction-select');
+        const factionContents = document.querySelectorAll('.faction-content');
+
+        factionSelect.addEventListener('change', () => {
+            const selectedFaction = factionSelect.value;
+
+            // Hide all faction content
+            factionContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Show the selected faction's content
+            if (selectedFaction) {
+                const selectedContent = document.getElementById(`${selectedFaction}-content`);
+                if (selectedContent) {
+                    selectedContent.classList.add('active');
+                }
+            }
         });
     </script>
 </body>
